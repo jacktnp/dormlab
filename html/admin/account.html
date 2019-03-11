@@ -14,58 +14,67 @@
     body{
         background: #1a535c;
     }
+    table, th, td{
+        border: 1px solid #000;
+    }
+    th, td{
+        padding: .5em;
+    }
     </style>
 </head>
 <body>
-    <!-- Navbar 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Navbar w/ text</a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">DormLab</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">สมาชิก</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">ห้องพัก</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link" href="#">ออกบิล</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">รับเงิน</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">รายงาน</a>
                 </li>
             </ul>
-            <span class="navbar-text">Login/Sign up</span>
+            <span class="nav-item active">Login/Sign up</span>
         </div>
     </nav>
-     / Navbar -->
+    <!-- / Navbar -->
 
-    <!-- Login -->
-    <div class="row mt-5 pt-5">
-    <div class="col-md-4"></div>
-    <div class="col-md-4 container bg-white p-5" style="border-radius: .3em;box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.315)">
-        <div class="d-flex justify-content-center">
-                <img src="https://i.imgur.com/dtLbFJe.jpg" class="mx-auto mb-4">
+    <div class="container text-white mt-5">
+        <h2>ภาพรวมหอพัก</h2>
+    </div>
+
+    <div class="container mt-5 d-flex flex-row flex-warp">
+        <div class="card mr-2" style="width: 18rem;">
+            <div class="card-body text-center">
+                หอพัก A
+            </div>
         </div>
-        <!--<h3 class="text-center mb-3">เข้าสู่ระบบ</h3>-->
-        <form>
-            <div class="form-group">
-                <label for="username"><i class="fas fa-user"></i> ชื่อผู้ใช้งาน</label>
-                <input type="text" class="form-control" id="username">
+
+        <div class="card mr-2" style="width: 18rem;">
+            <div class="card-body text-center">
+                หอพัก B
             </div>
-            <div class="form-group">
-                <label for="password"><i class="fas fa-lock"></i> รหัสผ่าน</label>
-                <input type="password" class="form-control" id="password">
+        </div>
+
+        <div class="card mr-2" style="width: 18rem;">
+            <div class="card-body text-center">
+                <i class="fas fa-plus"></i> สร้างหอพักใหม่
             </div>
-            <button type="reset" class="btn btn-danger float-right"><i class="fas fa-trash-alt"></i> ล้าง</button>
-            <button type="submit" class="btn btn-primary float-right mr-1"><i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ</button>
-            <br><br><hr>
-            <span class="float-right">หากไม่มีบัญชี กรุณา <button class="btn btn-warning"><i class="fas fa-user-plus"></i> สมัครสมาชิกใหม่</button></span>
-        </form>
+        </div>
     </div>
-    <div class="col-md-4"></div>
-    </div>
-    <!-- / Login -->
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
