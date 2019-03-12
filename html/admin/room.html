@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/koala.css">
+    <style>
+    table,th,td{
+        border: 0px;
+        border-bottom: 1px dashed #000;
+    }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -39,32 +45,38 @@
     <!-- / Navbar -->
 
     <div class="container bg-white p-5 mt-4 rounded">
-        <h2 class="text-decorationo text-center mb-5">Dashboard</h2>
-        <div class="row">
-            <div class="col-md-7">
-                Graph
-            </div>
-            <div class="col-md-5">
-                <div><i class="fas fa-search"></i> ค้นหาห้องพัก <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></div>
-                <br>
-                <div>
-                    <table width="100%">
-                        <tr>
-                            <th width="20%">เลขห้อง</th>
-                            <th width="80%">รายละเอียดห้อง</th>
-                        </tr>
-                        <tr>
-                            <td>101</td>
-                            <td>รายละเอียดห้อง....</td>
-                        </tr>
-                        <tr>
-                            <td>102</td>
-                            <td>รายละเอียดห้อง....</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
+        <h2 class="text-decorationo text-center mb-5">จัดการห้องพัก</h2>
+        <table width="100%">
+            <tr>
+                <th width="20%">เลขห้องพัก</th>
+                <th width="20%">จำนวนผู้พักอาศัย</th>
+                <th width="20%">วันหมดสัญญา</th>
+                <th width="20%">สถานะ</th>
+                <th width="20%">รายละเอียด</th>
+            </tr>
+            <tr>
+                <td>101</td>
+                <td>0</td>
+                <td>12/12/62</td>
+                <td><span class="badge badge-pill badge-success">Avaliable</span></td>
+                <td><a href="in-room.html" class="btn btn-info">รายละเอียด</a></td>
+            </tr>
+            <tr>
+                <td>102</td>
+                <td>0</td>
+                <td>12/12/62</td>
+                <td><span class="badge badge-pill badge-success">Avaliable</span></td>
+                <td><a href="in-room.html" class="btn btn-info">รายละเอียด</a></td>
+            </tr>
+            <tr>
+                <td>103</td>
+                <td>2</td>
+                <td>12/12/62</td>
+                <td><span class="badge badge-pill badge-danger">Full</span></td>
+                <td><a href="in-room.html" class="btn btn-info">รายละเอียด</a></td>
+            </tr>
+        </table>
+        
     </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

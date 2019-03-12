@@ -4,30 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dormlab | Homepage</title>
-    <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Timmana" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <style>
-    *{
-        font-family: 'Sarabun', sans-serif;
-    }
-    body{
-        background: #1a535c;
-    }
-    h1{
-        font-family: 'Timmana', sans-serif;
-    }
-    table, th, td{
-        border: 1px solid #000;
-    }
-    th, td{
-        padding: .5em;
-    }
-    .annouce{
-        width: 100%;
-    }
-    </style>
+    <link rel="stylesheet" href="../css/koala.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -59,31 +38,56 @@
     </nav>
     <!-- / Navbar -->
 
-    <div class="container mt-5 d-flex flex-row flex-warp">
-        <a href="annouce.html"><div class="card mr-2" style="width: 18rem;">
-            <div class="card-body text-center">
-                ประชาสัมพันธ์
+    <!-- Quick Menu -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-3">
+                <a href="annouce.html" class="text-decoration-none">
+                    <div class="card text-dark">
+                        <div class="card-body text-center">
+                            <span class="d-none d-sm-block">ประชาสัมพันธ์</span>
+                            <span class="d-block d-sm-none"><i class="fas fa-bullhorn"></i></span>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div></a>
+            
+            <div class="col-3">
+                <a href="bill.html" class="text-decoration-none">
+                    <div class="card text-dark">
+                        <div class="card-body text-center">
+                            <span class="d-none d-sm-block">บิล</span>
+                            <span class="d-block d-sm-none"><i class="fas fa-file-invoice-dollar"></i></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
-        <a href="bill.html"><div class="card mr-2" style="width: 18rem;">
-            <div class="card-body text-center">
-                บิล
+            <div class="col-3">
+                <a href="payment.html" class="text-decoration-none">
+                    <div class="card text-dark">
+                        <div class="card-body text-center">
+                            <span class="d-none d-sm-block">แจ้งชำระเงิน</span>
+                            <span class="d-block d-sm-none"><i class="fas fa-bell"></i></span>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div></a>
 
-        <a href="payment.html"><div class="card mr-2" style="width: 18rem;">
-            <div class="card-body text-center">
-                แจ้งชำระเงิน
+            <div class="col-3">
+                <a href="fix.html" class="text-decoration-none" >
+                    <div class="card text-dark">
+                        <div class="card-body text-center">
+                            <span class="d-none d-sm-block">แจ้งปัญหา</span>
+                            <span class="d-block d-sm-none"><i class="fas fa-exclamation-circle"></i></span>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div></a>
-
-        <a href="fix.html"><div class="card mr-2" style="width: 18rem;">
-            <div class="card-body text-center">
-                แจ้งปัญหา
-            </div>
-        </div></a>
+        </div>
     </div>
+    
+    <!-- / Quick Menu -->
 
     <div class="container bg-white p-5 mt-4 rounded">
         <h4 class="text-center mb-3">ประกาศ</h4>
