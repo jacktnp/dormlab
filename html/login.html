@@ -4,20 +4,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dormlab | Homepage</title>
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Timmana" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <style>
     *{
-        font-family: 'Sarabun', sans-serif;
+        font-family: 'Kanit', sans-serif;
     }
     body{
-        background: #1a535c;
+        background: #fff;
     }
-    h1{
-        font-family: 'Timmana', sans-serif;
+    .background{
+        width: 100%;
+        height: 320px;
+        background: linear-gradient(-90deg, #ff845c, #ff5286);
+        /*background-image: url("noise.png"), linear-gradient(-90deg, #ff845c, #ff5286);*/
     }
+    .ontop{
+        margin-top: -16em;
+    }
+    .cloud{
+        width: 35em;
+        height: auto;
+        position: absolute;
+        top: -3.5em;
+        left: -2em;
+        opacity: .9;
+        /*animation: cloud 110s alternate;*/
+    }
+    .cloud2{
+        width: 35em;
+        height: auto;
+        position: absolute;
+        top: 1em;
+        right: 0em;
+        opacity: .9;
+        /*animation: cloud2 100s alternate;*/
+    }
+    /*
+    @keyframes cloud{
+        from{
+            left: 0px;
+        }
+        to{
+            left: 1200px;
+        }
+    }
+
+    @keyframes cloud2{
+        from{
+            right: 0px;
+        }
+        to{
+            right: -1000px;
+        }
+    }
+    */
     </style>
 </head>
 <body>
@@ -44,29 +88,45 @@
     </nav>
      / Navbar -->
 
+    <!-- Background -->
+    <div class="background">
+        <div class="cloud">
+            <img src="test.svg">
+        </div>
+        <div class="cloud2">
+            <img src="test2.svg">
+        </div>
+    </div>
+
     <!-- Login -->
-    <div class="container">
+    <div class="container ontop">
         <div class="row mt-5 pt-5">
             <div class="col-md-3"></div>
-            <div class="col-md-6 bg-white p-5" style="border-radius: .3em;box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.315)">
+            <div class="col-md-6 bg-white p-5" style="border-radius: 1.75em;box-shadow: 6px 10px 20px rgba(0, 0, 0, 0.15)">
                 <div class="d-flex justify-content-center">
-                    <!-- <img src="https://i.imgur.com/dtLbFJe.jpg" class="mx-auto mb-4"> -->
-                    <h1 class="mx-auto mb-4">DormLab | Login</h1>
+                    <img src="logo.png" class="mx-auto mb-4">
                 </div>
                 <!--<h3 class="text-center mb-3">เข้าสู่ระบบ</h3>-->
-                <form>
-                    <div class="form-group">
-                        <label for="username"><i class="fas fa-user"></i> ชื่อผู้ใช้งาน</label>
-                        <input type="text" class="form-control" id="username">
+                <form class="px-3 mt-3">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="basic-addon1">
                     </div>
-                    <div class="form-group">
-                        <label for="password"><i class="fas fa-lock"></i> รหัสผ่าน</label>
-                        <input type="password" class="form-control" id="password">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="password"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Password" aria-label="password" aria-describedby="password">
                     </div>
-                    <!-- <button type="reset" class="btn btn-danger float-right"><i class="fas fa-trash-alt"></i> ล้าง</button> -->
-                    <button type="submit" class="btn btn-primary float-right mr-1"><i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ</button>
+                    <center>
+                        <button type="submit" class="btn btn-danger w-100"><i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ</button>
+                    </center>
+                    <!--
                     <br><br><hr>
-                    <span class="float-right">หากไม่มีบัญชี กรุณา <a href="register.html" class="btn btn-warning"><i class="fas fa-user-plus"></i> สมัครสมาชิกใหม่</a></span>
+                    <span class="float-right">หากไม่มีบัญชี กรุณา <a href="register.html">สมัครสมาชิกใหม่</a></span>
+                    -->
                 </form>
             </div>
             <div class="col-md-3"></div>
