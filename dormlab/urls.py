@@ -19,6 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('management.urls')),
-    path('news/', include('news.urls')),
-    path('payment/', include('payment.urls'))
 ]
+
+admin.site.site_header = 'Dormlab-Admin'
