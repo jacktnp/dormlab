@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block content%}
+
+<div class="container bg-white p-5 mt-4 contain">
+    <h4 class="text-center mb-3">บิลล่าสุด</h4>
+    <div class="row">
+        <div class="col-md-9">
+            <h5>บิลประจำเดือน <span class="text-primary">เมษายน</span> ยอดชำระ <span class="text-danger">5490</span> บาท</h5>
+        </div>
+        <div class="col-md-3">
+            <a href="/payment" class="btn btn-danger">ยังไม่ชำระ</a>
+            <a href="../" class="btn btn-info">รายละเอียด</a>
+        </div>
+    </div>
+</div>
+
+<div class="container bg-white p-5 my-4 contain">
+    <h4 class="mb-3">ประวัติการชำระเงิน</h4>
+    <table width="100%">
+        <tr>
+            <th width="20%">เดือน</th>
+            <th width="20%">รวม</th>
+            <th width="20%">ค่าไฟ (หน่วย)</th>
+            <th width="20%">ค่าน้ำ (หน่วย)</th>
+            <th width="20%">รายละเอียด</th>
+        </tr>
+        <tr>
+            <td>มีนาคม 2562</td>
+            <td>6105 บาท</td>
+            <td>11123-11145</td>
+            <td>100 หน่วย</td>
+            <td><a href="../" class="btn btn-warning">รายละเอียด</a></td>
+        </tr>
+        <tr>
+            <td>กุมภาพันธ์ 2562</td>
+            <td>5950 บาท</td>
+            <td>11123-11145</td>
+            <td>100 หน่วย</td>
+            <td><a href="../" class="btn btn-warning">รายละเอียด</a></td>
+        </tr>
+        <tr>
+            <td>มกราคม 2562</td>
+            <td>5143 บาท</td>
+            <td>11123-11145</td>
+            <td>100 หน่วย</td>
+            <td><a href="../" class="btn btn-warning">รายละเอียด</a></td>
+        </tr>
+        <tr>
+            <td>ธันวาคม 2561</td>
+            <td>5542 บาท</td>
+            <td>11123-11145</td>
+            <td>100 หน่วย</td>
+            <td><a href="../" class="btn btn-warning">รายละเอียด</a></td>
+        </tr>
+    </table>
+</div>
+
+
+{% endblock content%}

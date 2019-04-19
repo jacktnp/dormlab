@@ -22,28 +22,28 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="member.html">สมาชิก</a>
+                    <a class="nav-link" href="/annouce">ประชาสัมพันธ์</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">ห้องพัก</a>
+                    <a class="nav-link" href="/bill">บิล</a>
                 </li>
                 <li class="nav-item mx-3">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="../">
                         <img src="{% static 'image/logo.png' %}" style="width:90px;margin-top:-.25em;">
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">ออกบิล</a>
+                    <a class="nav-link" href="/payment">แจ้งชำระเงิน</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">รับเงิน</a>
+                    <a class="nav-link" href="/report">แจ้งปัญหา</a>
                 </li>
             </ul>
         </div>
     </nav>
     <!-- / Navbar -->
 
-    <!-- Quick Menu -->
+    <!-- Quick Menu 
     <div class="container mt-4">
         <div class="row">
             <div class="col-3">
@@ -92,7 +92,7 @@
         </div>
     </div>
 
-    <!-- / Quick Menu -->
+    / Quick Menu -->
 
     <!-- override content here -->
     {% block content %} {% endblock %}
@@ -102,5 +102,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="{% static 'js/bootstrap/bootstrap.min.js' %}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
+<footer>
+     <center>
+        <img src="{% static 'image/logo.png' %}" alt="Dormlab ระบบจัดการหอพัก">
+        <p>Copyright © 2019 Dormlab. All rights reserved.</p>
+     </center>   
+</footer>
 
 </html>
