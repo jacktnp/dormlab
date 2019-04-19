@@ -17,6 +17,10 @@ body{
     width: 100%;
 }
 
+.buttop{
+    top:-0.5em;
+}
+
 table, th, td{
     border: 1px solid #000;
 }
@@ -41,5 +45,8 @@ footer{
 @media only screen and (max-width: 480px) {
     footer img{
         width: 100% !important;
+    }
+    .buttop{
+        top:0;
     }
 }

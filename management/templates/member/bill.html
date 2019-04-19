@@ -3,10 +3,10 @@
 <div class="container bg-white p-5 contain">
     <h4 class="text-center mb-3">บิลล่าสุด</h4>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-sm-9">
             <h5>บิลประจำเดือน <span class="text-primary">เมษายน</span> ยอดชำระ <span class="text-danger">5490</span> บาท</h5>
         </div>
-        <div class="col-md-3">
+        <div class="col-sm-3">
             <a href="{% url 'user_payment' %}" class="btn btn-danger">ยังไม่ชำระ</a>
             <a href="{% url 'user_detail' %}" class="btn btn-info">รายละเอียด</a>
         </div>
@@ -14,7 +14,40 @@
 </div>
 
 <div class="container bg-white p-5 my-4 contain">
-    <h4 class="mb-3">ประวัติการชำระเงิน</h4>
+    <h4 class="mb-3 text-center">ประวัติการชำระเงิน</h4>
+    <br>
+    <div class="row mt-3">
+        <div class="col-sm-2 font-weight-bold">เมษายน 2562</div>
+        <div class="col-sm-2">ค่าไฟ 103 หน่วย</div>
+        <div class="col-sm-2">ค่าน้ำ 4 หน่วย</div>
+        <div class="col-sm-2 text-primary">7030.00 บาท</div>
+        <div class="col-sm-4 buttop"><a href="../" class="btn btn-outline-primary w-100">ดูรายละเอียด</a></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-sm-2 font-weight-bold">มีนาคม 2562</div>
+        <div class="col-sm-2">ค่าไฟ 56 หน่วย</div>
+        <div class="col-sm-2">ค่าน้ำ 3 หน่วย</div>
+        <div class="col-sm-2 text-primary">6105.00 บาท</div>
+        <div class="col-sm-4 buttop"><a href="../" class="btn btn-outline-primary w-100">ดูรายละเอียด</a></div>
+    </div>
+    
+    <div class="row mt-3">
+        <div class="col-sm-2 font-weight-bold">กุมภาพันธ์ 2562</div>
+        <div class="col-sm-2">ค่าไฟ 47 หน่วย</div>
+        <div class="col-sm-2">ค่าน้ำ 2 หน่วย</div>
+        <div class="col-sm-2 text-primary">5830.00 บาท</div>
+        <div class="col-sm-4 buttop"><a href="../" class="btn btn-outline-primary w-100">ดูรายละเอียด</a></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-sm-2 font-weight-bold">มกราคม 2562</div>
+        <div class="col-sm-2">ค่าไฟ 21 หน่วย</div>
+        <div class="col-sm-2">ค่าน้ำ 1 หน่วย</div>
+        <div class="col-sm-2 text-primary">5310.00 บาท</div>
+        <div class="col-sm-4 buttop"><a href="../" class="btn btn-outline-primary w-100">ดูรายละเอียด</a></div>
+    </div>
+    <!--
     <table width="100%">
         <tr>
             <th width="20%">เดือน</th>
@@ -52,6 +85,7 @@
             <td><a href="../" class="btn btn-warning">รายละเอียด</a></td>
         </tr>
     </table>
+    -->
 </div>
 
 
