@@ -23,3 +23,6 @@ def user_payment(request):
 
 def user_report(request):
     return render(request, template_name='member/report.html')
+
+def user_detail(request):
+    return render(request, template_name='member/detail.html')

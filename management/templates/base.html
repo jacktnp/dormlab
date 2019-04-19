@@ -22,24 +22,24 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-lg-none d-xl-none" href="../">หน้าแรก</a>
+                    <a class="nav-link d-lg-none d-xl-none" href="{% url 'user_index' %}">หน้าแรก</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/annouce">ประชาสัมพันธ์</a>
+                    <a class="nav-link" href="{% url 'user_annouce' %}">ประชาสัมพันธ์</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/bill">บิล</a>
+                    <a class="nav-link" href="{% url 'user_bill' %}">บิล</a>
                 </li>
                 <li class="nav-item mx-3 d-none d-lg-block d-xl-block">
-                    <a class="nav-link" href="../">
+                    <a class="nav-link" href="{% url 'user_index' %}">
                         <img src="{% static 'image/logo.png' %}" style="width:90px;margin-top:-.25em;">
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/payment">แจ้งชำระเงิน</a>
+                    <a class="nav-link" href="{% url 'user_payment' %}">แจ้งชำระเงิน</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/report">แจ้งปัญหา</a>
+                    <a class="nav-link" href="{% url 'user_report' %}">แจ้งปัญหา</a>
                 </li>
             </ul>
         </div>
@@ -108,7 +108,7 @@
 
 <footer>
      <center>
-        <img src="{% static 'image/logo.png' %}" alt="Dormlab ระบบจัดการหอพัก">
+        <img src="{% static 'image/logo.png' %}" alt="Dormlab ระบบจัดการหอพัก" style="width:300px;">
         <p>Copyright © 2019 Dormlab. All rights reserved.</p>
      </center>   
 </footer>

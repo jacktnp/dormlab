@@ -78,7 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'dormlab_db',
-        'USER': 'root',
+        'USER': 'dormlab_acc',
         'PASSWORD': '1234',
         'HOST': '127.0.0.1',
         'PORT': '3306',
