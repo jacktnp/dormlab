@@ -1,0 +1,67 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dormlab | Homepage</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/koala.css' %}">
+    <link rel="stylesheet" href="{% static 'css/salmon.css' %}">
+</head>
+
+<body>
+    <!-- Background -->
+    <div class="background">
+        <div class="cloud">
+            <img src="{% static 'image/cloud1.svg' %}">
+        </div>
+        <div class="cloud2">
+            <img src="{% static 'image/cloud2.svg' %}">
+        </div>
+    </div>
+
+    <!-- Login -->
+    <div class="container onlog">
+        <div class="row mt-5 pt-5">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 contain bg-white p-5">
+                <div class="d-flex justify-content-center">
+                    <img src="{% static 'image/logo.png' %}" class="mx-auto mb-4">
+                </div>
+                <!--<h3 class="text-center mb-3">เข้าสู่ระบบ</h3>-->
+                <form class="px-3 mt-3">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="password"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Password" aria-label="password" aria-describedby="password">
+                    </div>
+                    <center>
+                        <button type="submit" class="btn btn-danger w-100"><i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ</button>
+                    </center>
+                    <!--
+                    <br><br><hr>
+                    <span class="float-right">หากไม่มีบัญชี กรุณา <a href="register.html">สมัครสมาชิกใหม่</a></span>
+                    -->
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div> 
+    <!-- / Login -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

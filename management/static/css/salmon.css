@@ -1,0 +1,71 @@
+/* CSS for login & register page */
+input, button{
+    font-family: 'Kanit', sans-serif !important;
+}
+
+.background{
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(-90deg, #ff845c, #ff5286);
+    /*background-image: url("noise.png"), linear-gradient(-90deg, #ff845c, #ff5286);*/
+}
+
+.nav-bg{
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(-90deg, #ff845c, #ff5286);
+    /*background-image: url("noise.png"), linear-gradient(-90deg, #ff845c, #ff5286);*/
+}
+
+.onlog{
+    margin-top: -16em;
+}
+
+.onre{
+    margin-top: -19.25em;
+}
+
+.contain{
+    border-radius: 1.75em;
+    box-shadow: 6px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cloud{
+    width: 35em;
+    height: auto;
+    position: absolute;
+    top: -3.5em;
+    left: -2em;
+    opacity: .9;
+    /*animation: cloud 110s alternate;*/
+}
+
+.cloud2{
+    width: 35em;
+    height: auto;
+    position: absolute;
+    top: 1em;
+    right: 0em;
+    opacity: .9;
+    /*animation: cloud2 100s alternate;*/
+}
+
+/*
+@keyframes cloud{
+    from{
+        left: 0px;
+    }
+    to{
+        left: 1200px;
+    }
+}
+
+@keyframes cloud2{
+    from{
+        right: 0px;
+    }
+    to{
+        right: -1000px;
+    }
+}
+*/
