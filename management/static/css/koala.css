@@ -27,11 +27,19 @@ th, td{
 }
 
 footer{
+    position: relative;
+    bottom: 0;
     width: 100%;
-    height: 230px;
+    height: 240px;
     background: rgb(226, 226, 226);
     color: rgb(48, 48, 48);
     margin-top: 3.5em;
     padding: 2em;
     box-shadow: 6px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media only screen and (max-width: 480px) {
+    footer img{
+        width: 100% !important;
+    }
 }

@@ -15,19 +15,22 @@
 <body>
     <div class="nav-bg"></div>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light w-75 mx-auto mt-4" style="border-radius: 3em;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light w-75 mx-auto mt-4 text-center" style="border-radius: 3em;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
+                    <a class="nav-link d-lg-none d-xl-none" href="../">หน้าแรก</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/annouce">ประชาสัมพันธ์</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/bill">บิล</a>
                 </li>
-                <li class="nav-item mx-3">
+                <li class="nav-item mx-3 d-none d-lg-block d-xl-block">
                     <a class="nav-link" href="../">
                         <img src="{% static 'image/logo.png' %}" style="width:90px;margin-top:-.25em;">
                     </a>
