@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content%}
+
+    <!-- new Dorm -->
+    <div class="container bg-white p-5 contain">
+        <div class="d-flex justify-content-center">
+            <h1 class="mx-auto mb-4">แจ้งชำระเงิน</h1>
+        </div>
+        
+        <form>
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> ชื่อ-สกุล</label>
+                <input type="text" class="form-control" value="นายธนพนธ์ วงศ์ประเสริฐ" id="name" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="room"><i class="fas fa-door-closed"></i> ห้องพัก</label>
+                <input type="text" class="form-control" value="2409" id="room" disabled>
+            </div>
+                
+            <div class="form-group">
+                <label for="price"><i class="fas fa-money-bill-alt"></i> จำนวนเงิน</label>
+                <input type="number" class="form-control text-danger" value="5790" id="price" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="phonefordorm"><i class="fas fa-cloud-upload-alt"></i> อัพโหลดสลิป</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="taxid"><i class="far fa-calendar-alt"></i> วันเวลาโอนชำระเงิน</label>
+                <input type="datetime-local" class="form-control" id="taxid">
+            </div>
+
+            <div class="form-group">
+                <label for="notice"><i class="fas fa-comment"></i> หมายเหตุ</label>
+                <textarea class="form-control" id="notice" rows="3"></textarea>
+            </div>
+                
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary w-100 mt-3">ยันยัน</button>
+            </div>
+        </form>
+    </div> 
+    <!-- / new Dorm -->
+
+{% endblock content%}
