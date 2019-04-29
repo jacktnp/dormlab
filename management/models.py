@@ -1,8 +1,8 @@
 from django.db import models
 
 class Room(models.Model):
-    room_number = models.IntegerField(default=0)  # also Room Number
-    room_floor = models.IntegerField(default=0)
+    room_number = models.CharField(max_length=10)  # also Room Number
+    room_floor = models.IntegerField(default=1)
     room_rate = models.DecimalField(max_digits=10, decimal_places=3)
 
     STATUS = (
@@ -97,7 +97,7 @@ class Parcel(models.Model):
 class Invoice(models.Model):
     invoice_date = models.DateField()
     dorm_name = models.CharField(max_length=255)
-    room_number = models.IntegerField(default=0)
+    room_number = models.CharField(max_length=10)
     month_no = models.IntegerField(default=0)
     rent_number = models.IntegerField(default=0)
     total = models.DecimalField(max_digits=10, decimal_places=3)
