@@ -20,6 +20,8 @@ class Room(models.Model):
 
     #foreignKey
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.CASCADE)
+    def __str__(self):
+        return self.room_number
 
 class Reporting(models.Model):
     report_desc = models.TextField()
@@ -28,6 +30,7 @@ class Reporting(models.Model):
     #foreignKey
     report_type_type_id = models.ForeignKey('Report_type', on_delete=models.CASCADE)
     room_room_id = models.ForeignKey('Room', on_delete=models.CASCADE)
+    
 
 class Report_type(models.Model):
     type_name = models.CharField(max_length=100)
@@ -35,12 +38,10 @@ class Report_type(models.Model):
 class Dorm(models.Model):
     dorm_name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    floor = models.IntegerField(default=1)
-    elec_unit = models.DecimalField(max_digits=10, decimal_places=3)
-    water_unit = models.DecimalField(max_digits=10, decimal_places=3)
-    room_amount = models.IntegerField(default=1)
-    tel = models.CharField(max_length=10, unique=True)
-    taxid = models.CharField(max_length=255, unique=True)
+    floor = models.IntegerField(default=0)
+    elecUnit = models.DecimalField(max_digits=10, decimal_places=3)  # w8ing
+    waterUnit = models.DecimalField(max_digits=10, decimal_places=3)  # w8ing
+
 
 class Employee(models.Model):
     owner = models.BooleanField(default=False)
@@ -52,7 +53,9 @@ class Employee(models.Model):
     #foreignKey
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.CASCADE)
 
+
 class Logging(models.Model):
+    login_time = models.CharField(max_length=5)
     login_date = models.DateTimeField()
 
     #foreignKey
@@ -67,6 +70,8 @@ class Contracting(models.Model):
     deposit = models.DecimalField(max_digits=10, decimal_places=3)
     dmg_deposit = models.DecimalField(max_digits=10, decimal_places=3)
 
+
+
     #foreignKey
     room_room_id = models.ForeignKey(Room, on_delete=models.CASCADE)
     guest_guest_id = models.ForeignKey('Guest', on_delete=models.CASCADE)
@@ -80,7 +85,7 @@ class Guest(models.Model):
     address = models.TextField()
     line = models.CharField(max_length=255, null=True)
     phone = models.CharField(max_length=10, unique=True)
-    
+
 
 class Parcel(models.Model):
     fname_guest = models.CharField(max_length=255)
@@ -88,28 +93,27 @@ class Parcel(models.Model):
     arrive_date = models.DateTimeField()
     post_type = models.CharField(max_length=255)
     packaging = models.CharField(max_length=255)
+    pickup_date = models.DateTimeField()
     track_number = models.CharField(max_length=13, unique=True)
+    room_guest = models.CharField(max_length=10)
 
     #foreignKey
     guest_guest_id = models.ForeignKey('Guest', on_delete=models.CASCADE)
-
+    def __str__(self):
+        return self.fname_guest
 
 class Invoice(models.Model):
     invoice_date = models.DateField()
     dorm_name = models.CharField(max_length=255)
     room_number = models.CharField(max_length=10)
-    month_no = models.IntegerField(default=1)
+    month_no = models.IntegerField(default=0)
     rent_number = models.IntegerField(default=0)
     total = models.DecimalField(max_digits=10, decimal_places=3)
-    
-    STATUS = (
-        ('01', 'wait_pay'),
-        ('02', 'wait_confirm'),
-    )
-    status = models.CharField(max_length=2, choices=STATUS, default='01')
 
     #foreignKey
     contracting_contract_id = models.ForeignKey('Contracting', on_delete=models.CASCADE)
+    def __str__(self):
+        return self.invoice_date
 
 class Invoice_detail(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=3)
@@ -119,6 +123,8 @@ class Invoice_detail(models.Model):
     #foreignKey
     invoice_invoice_id = models.ForeignKey('Invoice', on_delete=models.CASCADE)
     expense_exp_id = models.ForeignKey('Expense', on_delete=models.CASCADE)
+    def __str__(self):
+        return self.guest_fname
 
 class Expense(models.Model):
     exp_desc = models.TextField()
@@ -140,4 +146,5 @@ class Payment(models.Model):
 
     #foreignKey
     invoice_invoice_id = models.ForeignKey('Invoice', on_delete=models.CASCADE)
+
 
