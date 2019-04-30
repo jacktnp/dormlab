@@ -8,11 +8,11 @@ def login_page(request):
     context = {}
 
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST.get('uname')
+        password = request.POST.get('pword')
 
         #check are they match in database
-        user = authenticate(request, username=username, password = password)
+        user = authenticate(request, username=username, password=password)
 
         if user:
             login(request, user)
@@ -21,9 +21,9 @@ def login_page(request):
             if next_url:
                 return redirect(next_url)
             else:
-                return redirect('index')
+                return redirect('user_index')
 
-            return redirect('index')
+            return redirect('user_index')
         else:
 
             context['username'] = username

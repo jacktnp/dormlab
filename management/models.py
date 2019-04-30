@@ -59,7 +59,7 @@ class Logging(models.Model):
     employee_emp_id = models.ForeignKey(Employee, on_delete=models.PROTECT)
 
 class Contracting(models.Model):
-    dorm_name = models.CharField(max_length=255)
+    #dorm_name = models.CharField(max_length=255)
     #room_number = models.CharField(max_length=10)
     start_date = models.DateField()
     expire_date = models.DateField()
@@ -96,7 +96,7 @@ class Parcel(models.Model):
 
 class Invoice(models.Model):
     invoice_date = models.DateField()
-    dorm_name = models.CharField(max_length=255)
+    #dorm_name = models.CharField(max_length=255)
     # room_number = models.CharField(max_length=10)
     month_no = models.IntegerField(default=1)
     rent_number = models.IntegerField(default=0)
@@ -125,8 +125,8 @@ class Expense(models.Model):
     price_per_unit = models.DecimalField(max_digits=10, decimal_places=3)
 
 class Payment(models.Model):
-    fname = models.CharField(max_length=255)
-    lname = models.CharField(max_length=255)
+    # fname = models.CharField(max_length=255)
+    # lname = models.CharField(max_length=255)
     amount = models.DecimalField(max_digits=10, decimal_places=3)
     payment_datetime = models.DateTimeField()
     bill_picture = models.ImageField(blank=True, null=True,
