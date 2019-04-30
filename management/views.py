@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 
+from django.contrib import messages
+
 # Create your views here.
 #==========================================Authen=========================================================
 def login_page(request):
@@ -16,6 +18,7 @@ def login_page(request):
 
         if user:
             login(request, user)
+            print('Account logged in by '+username)
 
             next_url = request.POST.get('next_url')
             if next_url:
@@ -37,8 +40,9 @@ def login_page(request):
     return render(request, template_name="dormlab/login.html", context=context)
 
 def my_logout(request):
+    print(request.user.username+' logged out.')
     logout(request)
-    return redirect('login')
+    return redirect('login_page')
 #==========================================Authen=========================================================
 
 def register_page(request):
