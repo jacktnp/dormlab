@@ -36,8 +36,11 @@ class Dorm(models.Model):
     dorm_name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     floor = models.IntegerField(default=0)
-    elecUnit = models.DecimalField(max_digits=10, decimal_places=3)  # w8ing
-    waterUnit = models.DecimalField(max_digits=10, decimal_places=3)  # w8ing
+    elec_unit = models.DecimalField(max_digits=10, decimal_places=3)  # w8ing
+    water_unit = models.DecimalField(max_digits=10, decimal_places=3)  # w8ing
+    #room_amount = models
+    #tel = 
+    #taxid = 
 
 class Employee(models.Model):
     owner = models.BooleanField(default=False)
@@ -50,7 +53,6 @@ class Employee(models.Model):
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.CASCADE)
 
 class Logging(models.Model):
-    login_time = models.CharField(max_length=5)
     login_date = models.DateTimeField()
 
     #foreignKey
@@ -86,9 +88,7 @@ class Parcel(models.Model):
     arrive_date = models.DateTimeField()
     post_type = models.CharField(max_length=255)
     packaging = models.CharField(max_length=255)
-    pickup_date = models.DateTimeField()
     track_number = models.CharField(max_length=13, unique=True)
-    room_guest = models.CharField(max_length=10)
 
     #foreignKey
     guest_guest_id = models.ForeignKey('Guest', on_delete=models.CASCADE)
@@ -101,6 +101,12 @@ class Invoice(models.Model):
     month_no = models.IntegerField(default=0)
     rent_number = models.IntegerField(default=0)
     total = models.DecimalField(max_digits=10, decimal_places=3)
+    
+    STATUS = (
+        ('01', 'wait_pay'),
+        ('02', 'wait_confirm'),
+    )
+    status = models.CharField(max_length=2, choices=STATUS, default='01')
 
     #foreignKey
     contracting_contract_id = models.ForeignKey('Contracting', on_delete=models.CASCADE)
