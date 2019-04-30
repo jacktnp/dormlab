@@ -35,12 +35,12 @@ class Report_type(models.Model):
 class Dorm(models.Model):
     dorm_name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    floor = models.IntegerField(default=0)
-    elec_unit = models.DecimalField(max_digits=10, decimal_places=3)  # w8ing
-    water_unit = models.DecimalField(max_digits=10, decimal_places=3)  # w8ing
-    #room_amount = models
-    #tel = 
-    #taxid = 
+    floor = models.IntegerField(default=1)
+    elec_unit = models.DecimalField(max_digits=10, decimal_places=3)
+    water_unit = models.DecimalField(max_digits=10, decimal_places=3)
+    room_amount = models.IntegerField(default=1)
+    tel = models.CharField(max_length=10, unique=True)
+    taxid = models.CharField(max_length=255, unique=True)
 
 class Employee(models.Model):
     owner = models.BooleanField(default=False)
@@ -98,7 +98,7 @@ class Invoice(models.Model):
     invoice_date = models.DateField()
     dorm_name = models.CharField(max_length=255)
     room_number = models.CharField(max_length=10)
-    month_no = models.IntegerField(default=0)
+    month_no = models.IntegerField(default=1)
     rent_number = models.IntegerField(default=0)
     total = models.DecimalField(max_digits=10, decimal_places=3)
     
