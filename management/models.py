@@ -54,11 +54,10 @@ class Employee(User):
     # emp_id = models.OneToOneField(User, on_delete=models.PROTECT)
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
 
-class Logging(models.Model):
-    login_date = models.DateTimeField()
+    class Meta:
+        verbose_name = 'Employee'
+        verbose_name_plural = 'Employees'
 
-    #foreignKey
-    employee_emp_id = models.ForeignKey(Employee, on_delete=models.PROTECT)
 
 class Contracting(models.Model):
     #dorm_name = models.CharField(max_length=255)
@@ -78,13 +77,16 @@ class Guest(User):
     # guest_fname = models.CharField(max_length=255)
     # guest_lname = models.CharField(max_length=255)
     # password = models.CharField(max_length=255)
-    career = models.CharField(max_length=255)
+    # career = models.CharField(max_length=255)
     address = models.TextField()
     line = models.CharField(max_length=255, null=True)
     phone = models.CharField(max_length=10, unique=True)
 
     #foreignKey
     # guest_id = models.OneToOneField(User, on_delete=models.PROTECT)
+    class Meta:
+        verbose_name = 'Guest'
+        verbose_name_plural = 'Guests'
 
 class Parcel(models.Model):
     fname_guest = models.CharField(max_length=255)
