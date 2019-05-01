@@ -97,7 +97,7 @@ class Parcel(models.Model):
     track_number = models.CharField(max_length=13, unique=True)
 
     #foreignKey
-    guest_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
+    # guest_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
 
 
 class Invoice(models.Model):
@@ -106,7 +106,7 @@ class Invoice(models.Model):
     # room_number = models.CharField(max_length=10)
     month_no = models.IntegerField(default=1)
     rent_number = models.IntegerField(default=0)
-    total = models.DecimalField(max_digits=10, decimal_places=3)
+    total = models.DecimalField(max_digits=10, decimal_places=3, default=0.0)
     
     STATUS = (
         ('01', 'wait_pay'),
