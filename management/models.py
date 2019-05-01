@@ -30,7 +30,7 @@ class Reporting(models.Model):
     #foreignKey
     report_type_type_id = models.ForeignKey('Report_type', on_delete=models.CASCADE)
     room_room_id = models.ForeignKey('Room', on_delete=models.CASCADE)
-    
+
 
 class Report_type(models.Model):
     type_name = models.CharField(max_length=100)
@@ -41,7 +41,8 @@ class Dorm(models.Model):
     floor = models.IntegerField(default=0)
     elecUnit = models.DecimalField(max_digits=10, decimal_places=3)  # w8ing
     waterUnit = models.DecimalField(max_digits=10, decimal_places=3)  # w8ing
-
+    def __str__(self):
+        return "%s"%(self.dorm_name)
 
 class Employee(models.Model):
     owner = models.BooleanField(default=False)
@@ -52,6 +53,8 @@ class Employee(models.Model):
 
     #foreignKey
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.CASCADE)
+    def __str__(self):
+        return "%s %s"%(self.emp_fname, self.emp_lname)
 
 
 class Logging(models.Model):
@@ -70,8 +73,6 @@ class Contracting(models.Model):
     deposit = models.DecimalField(max_digits=10, decimal_places=3)
     dmg_deposit = models.DecimalField(max_digits=10, decimal_places=3)
 
-
-
     #foreignKey
     room_room_id = models.ForeignKey(Room, on_delete=models.CASCADE)
     guest_guest_id = models.ForeignKey('Guest', on_delete=models.CASCADE)
@@ -85,6 +86,8 @@ class Guest(models.Model):
     address = models.TextField()
     line = models.CharField(max_length=255, null=True)
     phone = models.CharField(max_length=10, unique=True)
+    def __str__(self):
+        return "%s %s"%(self.guest_fname, self.guest_lname)
 
 
 class Parcel(models.Model):
@@ -113,7 +116,7 @@ class Invoice(models.Model):
     #foreignKey
     contracting_contract_id = models.ForeignKey('Contracting', on_delete=models.CASCADE)
     def __str__(self):
-        return self.invoice_date
+        return self.dorm_name
 
 class Invoice_detail(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=3)
@@ -124,11 +127,13 @@ class Invoice_detail(models.Model):
     invoice_invoice_id = models.ForeignKey('Invoice', on_delete=models.CASCADE)
     expense_exp_id = models.ForeignKey('Expense', on_delete=models.CASCADE)
     def __str__(self):
-        return self.guest_fname
+        return self.price
 
 class Expense(models.Model):
     exp_desc = models.TextField()
     price_per_unit = models.DecimalField(max_digits=10, decimal_places=3)
+    def __str__(self):
+        return "Expense %s"%(self.id)
 
 class Payment(models.Model):
     fname = models.CharField(max_length=255)
