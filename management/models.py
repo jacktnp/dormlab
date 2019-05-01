@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Room(models.Model):
     room_number = models.CharField(max_length=10)  # also Room Number
@@ -42,14 +43,15 @@ class Dorm(models.Model):
     tel = models.CharField(max_length=10, unique=True, default='0000000000')
     taxid = models.CharField(max_length=255, unique=True, default='000-000')
 
-class Employee(models.Model):
-    owner = models.BooleanField(default=False)
-    emp_fname = models.CharField(max_length=255)
-    emp_lname = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+class Employee(User):
+    # owner = models.BooleanField(default=False)
+    # emp_fname = models.CharField(max_length=255)
+    # emp_lname = models.CharField(max_length=255)
+    # password = models.CharField(max_length=255)
     emp_phone = models.CharField(max_length=10, unique=True)
 
     #foreignKey
+    # emp_id = models.OneToOneField(User, on_delete=models.PROTECT)
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
 
 class Logging(models.Model):
@@ -72,15 +74,17 @@ class Contracting(models.Model):
     guest_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
 
 
-class Guest(models.Model):
-    guest_fname = models.CharField(max_length=255)
-    guest_lname = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+class Guest(User):
+    # guest_fname = models.CharField(max_length=255)
+    # guest_lname = models.CharField(max_length=255)
+    # password = models.CharField(max_length=255)
     career = models.CharField(max_length=255)
     address = models.TextField()
     line = models.CharField(max_length=255, null=True)
     phone = models.CharField(max_length=10, unique=True)
-    
+
+    #foreignKey
+    # guest_id = models.OneToOneField(User, on_delete=models.PROTECT)
 
 class Parcel(models.Model):
     fname_guest = models.CharField(max_length=255)
@@ -140,4 +144,3 @@ class Payment(models.Model):
 
     #foreignKey
     invoice_invoice_id = models.ForeignKey('Invoice', on_delete=models.PROTECT)
-
