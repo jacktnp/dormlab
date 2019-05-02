@@ -16,8 +16,8 @@
     <div class="nav-bg"></div>
 
     <div class="user">
-        <div class="user-">Admin</div>
-        <a href="#" class="user-logout">ออกจากระบบ</a>
+        <span class="user-name">Admin</span>
+        <a href="{% url 'logout' %}" class="user-logout">ออกจากระบบ</a>
     </div>
 
     <!-- Navbar -->
@@ -44,9 +44,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'user_payment' %}">แจ้งชำระเงิน</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        อื่นๆ
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'user_report' %}">แจ้งปัญหา</a>
+                        <a class="dropdown-item" href="#">สัญญาหอพัก</a>
+                    </div>
+                </li>
+                <!--
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'user_report' %}">แจ้งปัญหา</a>
                 </li>
+                -->
             </ul>
         </div>
     </nav>
