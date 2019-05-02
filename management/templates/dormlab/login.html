@@ -32,19 +32,22 @@
                     <img src="{% static 'image/logo.png' %}" class="mx-auto mb-4">
                 </div>
                 <!--<h3 class="text-center mb-3">เข้าสู่ระบบ</h3>-->
-                <form class="px-3 mt-3">
+                <form class="px-3 mt-3" method="POST" action="{% url 'login_page' %}">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="basic-addon1">
+                        <input name='uname' type="text" class="form-control" placeholder="Username" aria-label="username" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="password"><i class="fas fa-lock"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="Password" aria-label="password" aria-describedby="password">
+                        <input name="pword" type="password" class="form-control" placeholder="Password" aria-label="password" aria-describedby="password">
                     </div>
+                    {% csrf_token %} {% if error%}
+
+                    <span style="color:red;">ชื่อผู้ใช้งาน หรือ รหัสผ่าน ไม่ถูกต้อง</span> {% endif %}
                     <center>
                         <a href="../">
                             <button type="submit" class="btn btn-danger w-100"><i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ</button>
@@ -58,7 +61,7 @@
             </div>
             <div class="col-md-3"></div>
         </div>
-    </div> 
+    </div>
     <!-- / Login -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -67,10 +70,10 @@
 </body>
 
 <footer>
-     <center>
+    <center>
         <img src="{% static 'image/logo.png' %}" alt="Dormlab ระบบจัดการหอพัก" style="width:300px;">
         <p>Copyright © 2019 Dormlab. All rights reserved.</p>
-     </center>   
+    </center>
 </footer>
 
 </html>

@@ -32,7 +32,6 @@ class Reporting(models.Model):
     report_type_type_id = models.ForeignKey('Report_type', on_delete=models.PROTECT)
     room_room_id = models.ForeignKey('Room', on_delete=models.PROTECT)
 
-
 class Report_type(models.Model):
     type_name = models.CharField(max_length=100)
     def __str__(self):
@@ -124,6 +123,7 @@ class Invoice(models.Model):
     STATUS = (
         ('01', 'wait_pay'),
         ('02', 'wait_confirm'),
+        ('03', 'conform')
     )
     status = models.CharField(max_length=2, choices=STATUS, default='01')
 
