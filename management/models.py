@@ -154,13 +154,14 @@ class Payment(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=3)
     payment_datetime = models.DateTimeField()
     bill_picture = models.ImageField(blank=True, null=True,
-        upload_to="payments_%Y-%m-%D") #this models need to install pip pillow
+                                     upload_to="payments_%Y-%m-%D")  # this models need to install pip pillow
 
     STATUS = (
         ('01', 'Unpaid'),
         ('02', 'Paid'),
     )
-    payment_confirm = models.CharField(max_length=2, choices=STATUS, default='01')
+    payment_confirm = models.CharField(
+        max_length=2, choices=STATUS, default='01')
 
     #foreignKey
     payment_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
