@@ -103,3 +103,7 @@ def user_report(request):
 def user_detail(request):
     return render(request, template_name='member/detail.html')
 
+@login_required
+def contract(request):
+    return render(request, template_name='member/contract.html')
+
