@@ -49,6 +49,35 @@ footer{
     box-shadow: 6px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
+.user{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
+.user-name{
+    border-radius: 3em;
+    background: #fff;
+    padding: .35em .75em .35em .75em;
+    color: rgba(0,0,0,.5);
+    box-shadow: 6px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.user-logout{
+    border-radius: 3em;
+    background: #fff;
+    padding: .35em .75em .35em .75em;
+    color: rgba(0,0,0,.5);
+    box-shadow: 6px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.user-logout:hover{
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    transition: .25s;
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 480px) {
     footer img{
         width: 100% !important;
