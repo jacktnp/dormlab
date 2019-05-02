@@ -5,16 +5,14 @@
     <center>
         <h1 style="font-size: 6em;"><i class="fas fa-building"></i></h1>
         <br>
-        <h1 style="font-size: 4em;">Welcome, Room 202</h1>
-        <h5>@ Dormlab Apartment</h5>
+        <h1 style="font-size: 4em;">Welcome, Room {{room.room_number}}</h1>
+        <h5>@ {{dorm.dorm_name}}</h5>
         <br>
         <div class="annouce p-3 my-2 bg-danger text-white rounded">
-            <i class="fas fa-exclamation-triangle text-warning"></i> ยอดค้างชำระเดือนเมษายน 2562 จำนวน 5470 บาท
+            <i class="fas fa-exclamation-triangle text-warning"></i> ยอดค้างชำระเดือน {{invoice.month_now}} {{invoice.year_now}} จำนวน {{invoice.total}} บาท
         </div>
         <br>
     </center>
 </div>
-
-
 
 {% endblock content %}

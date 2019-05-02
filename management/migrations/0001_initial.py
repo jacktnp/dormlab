@@ -1,4 +1,5 @@
 
+
 from django.conf import settings
 import django.contrib.auth.models
 from django.db import migrations, models
@@ -40,6 +41,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
+
             name='Employee',
             fields=[
                 ('user_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
@@ -72,9 +74,8 @@ class Migration(migrations.Migration):
                 ('phone', models.CharField(max_length=10, unique=True)),
             ],
             options={
-                'verbose_name': 'user',
-                'verbose_name_plural': 'users',
-                'abstract': False,
+                'verbose_name': 'Guest',
+                'verbose_name_plural': 'Guests',
             },
             bases=('auth.user',),
             managers=[
@@ -88,9 +89,21 @@ class Migration(migrations.Migration):
                 ('invoice_date', models.DateField()),
                 ('month_no', models.IntegerField(default=1)),
                 ('rent_number', models.IntegerField(default=0)),
-                ('total', models.DecimalField(decimal_places=3, max_digits=10)),
+                ('total', models.DecimalField(decimal_places=3, default=0.0, max_digits=10)),
                 ('status', models.CharField(choices=[('01', 'wait_pay'), ('02', 'wait_confirm')], default='01', max_length=2)),
                 ('contracting_contract_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='management.Contracting')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Parcel',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('fname_guest', models.CharField(max_length=255)),
+                ('lname_guest', models.CharField(max_length=255)),
+                ('arrive_date', models.DateTimeField()),
+                ('post_type', models.CharField(max_length=255)),
+                ('packaging', models.CharField(max_length=255)),
+                ('track_number', models.CharField(max_length=13, unique=True)),
             ],
         ),
         migrations.CreateModel(
@@ -130,28 +143,9 @@ class Migration(migrations.Migration):
                 ('payment_datetime', models.DateTimeField()),
                 ('bill_picture', models.ImageField(blank=True, null=True, upload_to='payments_%Y-%m-%D')),
                 ('payment_confirm', models.CharField(choices=[('01', 'Unpaid'), ('02', 'Paid')], default='01', max_length=2)),
-                ('invoice_invoice_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='management.Invoice')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Parcel',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fname_guest', models.CharField(max_length=255)),
-                ('lname_guest', models.CharField(max_length=255)),
-                ('arrive_date', models.DateTimeField()),
-                ('post_type', models.CharField(max_length=255)),
-                ('packaging', models.CharField(max_length=255)),
-                ('track_number', models.CharField(max_length=13, unique=True)),
-                ('guest_guest_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='management.Guest')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Logging',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('login_date', models.DateTimeField()),
-                ('employee_emp_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='management.Employee')),
+
+                ('payment_guest_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='management.Guest')),
+
             ],
         ),
         migrations.CreateModel(
@@ -163,6 +157,22 @@ class Migration(migrations.Migration):
                 ('unit', models.DecimalField(decimal_places=3, max_digits=10)),
                 ('expense_exp_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='management.Expense')),
                 ('invoice_invoice_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='management.Invoice')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Employee',
+            fields=[
+                ('user_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
+                ('emp_phone', models.CharField(max_length=10, unique=True)),
+                ('dorm_dorm_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='management.Dorm')),
+            ],
+            options={
+                'verbose_name': 'Employee',
+                'verbose_name_plural': 'Employees',
+            },
+            bases=('auth.user',),
+            managers=[
+                ('objects', django.contrib.auth.models.UserManager()),
             ],
         ),
         migrations.AddField(

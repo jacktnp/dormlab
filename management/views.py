@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Room, Contracting, Dorm, Guest
+from .models import Room, Contracting, Dorm, Guest, Invoice
+
+import datetime
 
 # Create your views here.
 #==========================================Authen=========================================================
@@ -53,12 +55,27 @@ def register_page(request):
 @login_required
 def user_home(request):
     context = {}
-    # guest-> contract-> room
-    for room in Room.objects.all():
-        print(room.room_number)
-    # Contracting.get
-    # print(room.room_number)
-    # context['room'] = room
+    user = Guest.objects.get(id=request.user.id)
+    contract = Contracting.objects.filter(guest_guest_id_id=user.id)
+    print('contract_id = %d '%(contract[0].id))
+    # print(contract[0].room_room_id_id)
+    #getGuest's Room
+    room = Room.objects.get(id=contract[len(contract)-1].room_room_id_id)
+    print('this room = '+room.room_number)
+    context['room'] = room
+    #getGuest's Invoice 
+    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id)
+    if len(invoice) > 0: #there is invoice in this user
+        context['invoice'] = invoice[0]
+        
+    print('this invoice = '+str(invoice[0].total))
+    
+
+    #getGuest's Dorm
+    dorm = Dorm.objects.get(id=room.dorm_dorm_id_id)
+    print(dorm.dorm_name)
+    context['dorm'] = dorm
+
     return render(request, template_name='member/index.html', context=context)
 
 
@@ -85,4 +102,8 @@ def user_report(request):
 @login_required
 def user_detail(request):
     return render(request, template_name='member/detail.html')
+
+@login_required
+def contract(request):
+    return render(request, template_name='member/contract.html')
 

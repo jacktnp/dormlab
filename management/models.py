@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+import datetime
+
 class Room(models.Model):
     room_number = models.CharField(max_length=10)  # also Room Number
     room_floor = models.IntegerField(default=1)
@@ -129,9 +131,29 @@ class Invoice(models.Model):
 
     #foreignKey
     contracting_contract_id = models.ForeignKey('Contracting', on_delete=models.PROTECT)
+
     def __str__(self):
         return "%s "%(self.contracting_contract_id)
     
+
+
+    #yyyy-mm-dd
+    def month_now(self):
+        month = {
+            '01' : 'มกราคม', '02' : 'กุมภาพันธ์', '03' : 'มีนาคม', '04' : 'เมษายน', 
+            '05' : 'พฤษภาคม', '06' : 'มิถุนายน', '07' : 'กรกฎาคม', '08' : 'สิงหาคม', 
+            '09' : 'กันยายน', '10' : 'ตุลาคม', '11' : 'พฤศจิกายน', '12' : 'ธันวาคม'
+        }
+        # print(self.invoice_date.strftime[5:7:])
+        
+        return month[str(self.invoice_date)[5:7]]
+
+    def year_now(self):
+        return int(str(self.invoice_date)[:4])+543
+            
+        
+
+
 class Invoice_detail(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=3)
     total = models.DecimalField(max_digits=10, decimal_places=3)
@@ -155,13 +177,14 @@ class Payment(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=3)
     payment_datetime = models.DateTimeField()
     bill_picture = models.ImageField(blank=True, null=True,
-        upload_to="payments_%Y-%m-%D") #this models need to install pip pillow
+                                     upload_to="payments_%Y-%m-%D")  # this models need to install pip pillow
 
     STATUS = (
         ('01', 'Unpaid'),
         ('02', 'Paid'),
     )
-    payment_confirm = models.CharField(max_length=2, choices=STATUS, default='01')
+    payment_confirm = models.CharField(
+        max_length=2, choices=STATUS, default='01')
 
     #foreignKey
-    invoice_invoice_id = models.ForeignKey('Invoice', on_delete=models.PROTECT)
+    payment_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
