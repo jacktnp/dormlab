@@ -169,7 +169,6 @@ class Expense(models.Model):
     def __str__(self):
         return "%s "%(self.exp_desc)
 
-
 class Payment(models.Model):
     # fname = models.CharField(max_length=255)
     # lname = models.CharField(max_length=255)
@@ -179,10 +178,8 @@ class Payment(models.Model):
                                      upload_to="payments_%Y-%m-%D")  # this models need to install pip pillow
     STATUS = (
         ('01', 'Unpaid'),
-        ('02', 'Paid'),
+        ('02', 'Paid')
     )
-    payment_confirm = models.CharField(
-        max_length=2, choices=STATUS, default='01')
 
     payment_desc = models.CharField(max_length=255, null=True)
 
@@ -204,4 +201,5 @@ class New(models.Model):
     news_content =  models.TextField()
     #foreignKey
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
-
+    def __str__(self):
+        return "%s "%(self.dorm_dorm_id)

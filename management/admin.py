@@ -62,7 +62,7 @@ class EmployeeAdmin(admin.ModelAdmin):
   #  search_fields = ["emp_phone"]
 
     fieldsets = [
-            (None,{'fields':[ 'username', 'password',"emp_phone","dorm_dorm_id"]}),
+            (None,{'fields':[ 'username', 'password',"emp_phone","dorm_dorm_id", "is_superuser","is_staff"]}),
             ("Information",{"fields":['first_name', 'last_name', 'email']})
     ]
 
@@ -95,15 +95,18 @@ class ParcelAdmin(admin.ModelAdmin):
     search_fields = ['fname_guest', 'lname_guest', "track_number", "post_type"]
 
 class NewAdmin(admin.ModelAdmin):
-    list_display=['news_title','news_content']
+    list_display=["__str__",'news_title','news_content']
     search_fields = ['news_title']
+    list_filter = ['dorm_dorm_id']
+
+class PaymentAdmin(admin.ModelAdmin):
+    list_display=["payment_guest_id",'payment_desc','payment_datetime','payment_confirm']
+    search_fields = ["payment_guest_id",'payment_desc','payment_confirm']
+    list_filter = ['payment_confirm', 'payment_datetime']
 
 
 
-
-
-
-
+admin.site.register(Payment,PaymentAdmin)
 admin.site.register(New,NewAdmin)
 admin.site.register(Dorm,DormAdmin)
 admin.site.register(Room, RoomAdmin)
