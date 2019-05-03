@@ -167,22 +167,21 @@ class Expense(models.Model):
     def __str__(self):
         return "%s "%(self.exp_desc)
 
-
 class Payment(models.Model):
     # fname = models.CharField(max_length=255)
     # lname = models.CharField(max_length=255)
-    amount = models.DecimalField(max_digits=10, decimal_places=3)
+    #amount = models.DecimalField(max_digits=10, decimal_places=3)
     payment_datetime = models.DateTimeField()
     bill_picture = models.ImageField(blank=True, null=True,
                                      upload_to="payments_%Y-%m-%D")  # this models need to install pip pillow
     STATUS = (
         ('01', 'Unpaid'),
-        ('02', 'Paid'),
+        ('02', 'Paid')
     )
-    payment_confirm = models.CharField(
-        max_length=2, choices=STATUS, default='01')
 
     payment_desc = models.TextField()
+    payment_confirm = models.CharField(
+        max_length=2, choices=STATUS, default='01')
 
     #foreignKey
     payment_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
@@ -192,4 +191,5 @@ class New(models.Model):
     news_content =  models.TextField()
     #foreignKey
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
-
+    def __str__(self):
+        return "%s "%(self.dorm_dorm_id)
