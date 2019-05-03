@@ -134,8 +134,6 @@ class Invoice(models.Model):
 
     def __str__(self):
         return "%s "%(self.contracting_contract_id)
-    
-
 
     #yyyy-mm-dd
     def month_now(self):
@@ -151,8 +149,6 @@ class Invoice(models.Model):
     def year_now(self):
         return int(str(self.invoice_date)[:4])+543
             
-        
-
 
 class Invoice_detail(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=3)
@@ -174,17 +170,26 @@ class Expense(models.Model):
 class Payment(models.Model):
     # fname = models.CharField(max_length=255)
     # lname = models.CharField(max_length=255)
-    amount = models.DecimalField(max_digits=10, decimal_places=3)
+    #amount = models.DecimalField(max_digits=10, decimal_places=3)
     payment_datetime = models.DateTimeField()
     bill_picture = models.ImageField(blank=True, null=True,
                                      upload_to="payments_%Y-%m-%D")  # this models need to install pip pillow
-
     STATUS = (
         ('01', 'Unpaid'),
-        ('02', 'Paid'),
+        ('02', 'Paid')
     )
+
+    payment_desc = models.TextField()
     payment_confirm = models.CharField(
         max_length=2, choices=STATUS, default='01')
 
     #foreignKey
     payment_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
+
+class New(models.Model):
+    news_title = models.CharField(max_length=255)
+    news_content =  models.TextField()
+    #foreignKey
+    dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
+    def __str__(self):
+        return "%s "%(self.dorm_dorm_id)
