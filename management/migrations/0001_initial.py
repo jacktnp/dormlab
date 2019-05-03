@@ -126,11 +126,7 @@ class Migration(migrations.Migration):
                 ('payment_datetime', models.DateTimeField()),
                 ('bill_picture', models.ImageField(blank=True, null=True, upload_to='payments_%Y-%m-%D')),
                 ('payment_confirm', models.CharField(choices=[('01', 'Unpaid'), ('02', 'Paid')], default='01', max_length=2)),
-<<<<<<< HEAD
                 ('payment_guest_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='management.Guest')),
-=======
-                ('invoice_invoice_id', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='management.Invoice')),
->>>>>>> 368a13eec6a0d3959aced9bf34244f749ee37177
             ],
         ),
         migrations.CreateModel(
