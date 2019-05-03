@@ -23,6 +23,8 @@ class Room(models.Model):
 
     #foreignKey
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
+    def __str__(self):
+        return "%s"%(self.room_number)
 
 class Reporting(models.Model):
     report_desc = models.TextField()
@@ -34,6 +36,8 @@ class Reporting(models.Model):
 
 class Report_type(models.Model):
     type_name = models.CharField(max_length=100)
+    def __str__(self):
+        return "%s"%(self.type_name)
 
 class Dorm(models.Model):
     dorm_name = models.CharField(max_length=255)
@@ -44,6 +48,9 @@ class Dorm(models.Model):
     room_amount = models.IntegerField(default=1)
     tel = models.CharField(max_length=10, unique=True, default='0000000000')
     taxid = models.CharField(max_length=255, unique=True, default='000-000')
+
+    def __str__(self):
+        return "%s"%(self.dorm_name)
 
 class Employee(User):
     # owner = models.BooleanField(default=False)
@@ -59,7 +66,8 @@ class Employee(User):
     class Meta:
         verbose_name = 'Employee'
         verbose_name_plural = 'Employees'
-
+    def __str__(self):
+        return "%s"%(self.username)
 
 class Contracting(models.Model):
     #dorm_name = models.CharField(max_length=255)
@@ -73,7 +81,8 @@ class Contracting(models.Model):
     #foreignKey
     room_room_id = models.ForeignKey(Room, on_delete=models.PROTECT)
     guest_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
-
+    def __str__(self):
+        return "%s"%(self.guest_guest_id)
 
 class Guest(User):
     # guest_fname = models.CharField(max_length=255)
@@ -89,6 +98,8 @@ class Guest(User):
     class Meta:
         verbose_name = 'Guest'
         verbose_name_plural = 'Guests'
+    def __str__(self):
+        return "%s"%(self.username)
 
 class Parcel(models.Model):
     fname_guest = models.CharField(max_length=255)
@@ -99,8 +110,9 @@ class Parcel(models.Model):
     track_number = models.CharField(max_length=13, unique=True)
 
     #foreignKey
-    # guest_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
-
+    #guest_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
+    def __str__(self):
+        return "%s %s"%(self.fname_guest, self.lname_guest)
 
 class Invoice(models.Model):
     invoice_date = models.DateField()
@@ -113,11 +125,17 @@ class Invoice(models.Model):
     STATUS = (
         ('01', 'wait_pay'),
         ('02', 'wait_confirm'),
+        ('03', 'conform')
     )
     status = models.CharField(max_length=2, choices=STATUS, default='01')
 
     #foreignKey
     contracting_contract_id = models.ForeignKey('Contracting', on_delete=models.PROTECT)
+
+    def __str__(self):
+        return "%s "%(self.contracting_contract_id)
+    
+
 
     #yyyy-mm-dd
     def month_now(self):
@@ -135,6 +153,7 @@ class Invoice(models.Model):
             
         
 
+
 class Invoice_detail(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=3)
     total = models.DecimalField(max_digits=10, decimal_places=3)
@@ -143,10 +162,14 @@ class Invoice_detail(models.Model):
     #foreignKey
     invoice_invoice_id = models.ForeignKey('Invoice', on_delete=models.PROTECT)
     expense_exp_id = models.ForeignKey('Expense', on_delete=models.PROTECT)
+    def __str__(self):
+        return "%.2f "%(self.price*self.unit)
 
 class Expense(models.Model):
     exp_desc = models.TextField()
     price_per_unit = models.DecimalField(max_digits=10, decimal_places=3)
+    def __str__(self):
+        return "%s "%(self.exp_desc)
 
 class Payment(models.Model):
     # fname = models.CharField(max_length=255)
