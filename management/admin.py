@@ -3,7 +3,7 @@ from django.contrib.auth.models import Permission
 
 #Register your models 
 from  .models import Room, Reporting, Dorm,Contracting, Employee, Report_type,User
-from  .models import Guest, Parcel, Invoice, Invoice_detail, Expense
+from  .models import Guest, Parcel, Invoice, Invoice_detail, Expense, New
 
 
 # class Dormx(admin.StackedInline):
@@ -65,7 +65,6 @@ class EmployeeAdmin(admin.ModelAdmin):
             (None,{'fields':[ 'username', 'password',"emp_phone","dorm_dorm_id"]}),
             ("Information",{"fields":['first_name', 'last_name', 'email']})
     ]
-    
 
 class ExpenseAdmin(admin.ModelAdmin):
     list_display=['exp_desc','price_per_unit']
@@ -95,12 +94,17 @@ class ParcelAdmin(admin.ModelAdmin):
     list_filter = ['arrive_date']
     search_fields = ['fname_guest', 'lname_guest', "track_number", "post_type"]
 
+class NewAdmin(admin.ModelAdmin):
+    list_display=['news_title','news_content']
+    search_fields = ['news_title']
 
 
 
 
 
 
+
+admin.site.register(New,NewAdmin)
 admin.site.register(Dorm,DormAdmin)
 admin.site.register(Room, RoomAdmin)
 admin.site.register(Contracting, ContractingAdmin)
