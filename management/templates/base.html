@@ -10,10 +10,17 @@
     <link rel="stylesheet" href="{% static 'css/fontawesome/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'css/koala.css' %}">
     <link rel="stylesheet" href="{% static 'css/salmon.css' %}">
+    <style>
+    .navbar{
+        position: absolute !important;
+        top: 3em !important;
+        left: 12.5% !important;
+    }
+    </style>
 </head>
 
 <body>
-    <div class="nav-bg"></div>
+    <div class="nav-bg" style="margin-bottom: 5em;"></div>
 
     <div class="user">
         <span class="user-name">Admin</span>
@@ -21,7 +28,7 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light w-75 mx-auto mt-4 text-center" style="border-radius: 3em;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light w-75 mx-auto mt-4 text-center" style="border-radius: 1.75em;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,7 +55,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         อื่นๆ
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="{% url 'user_report' %}">แจ้งปัญหา</a>
                         <a class="dropdown-item" href="{% url 'contract' %}">สัญญาหอพัก</a>
                     </div>
