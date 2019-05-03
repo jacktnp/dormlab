@@ -7,10 +7,11 @@
         <br>
         <h1 style="font-size: 4em;">Welcome, Room {{room.room_number}}</h1>
         <h5>@ {{dorm.dorm_name}}</h5>
-        <br>
+        <br> {%if unpaid %}
         <div class="annouce p-3 my-2 bg-danger text-white rounded">
-            <i class="fas fa-exclamation-triangle text-warning"></i> ยอดค้างชำระเดือน {{invoice.month_now}} {{invoice.year_now}} จำนวน {{invoice.total}} บาท
+            <i class="fas fa-exclamation-triangle text-warning"></i> ยอดค้างชำระเดือน {{invoice.month_now}} {{invoice.year_now}} จำนวน {{invoice.total|stringformat:".2f"}} บาท
         </div>
+        {%endif%}
         <br>
     </center>
 </div>

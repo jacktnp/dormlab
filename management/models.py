@@ -135,8 +135,6 @@ class Invoice(models.Model):
     def __str__(self):
         return "%s "%(self.contracting_contract_id)
     
-
-
     #yyyy-mm-dd
     def month_now(self):
         month = {
@@ -151,9 +149,6 @@ class Invoice(models.Model):
     def year_now(self):
         return int(str(self.invoice_date)[:4])+543
             
-        
-
-
 class Invoice_detail(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=3)
     total = models.DecimalField(max_digits=10, decimal_places=3)
@@ -185,6 +180,8 @@ class Payment(models.Model):
     )
     payment_confirm = models.CharField(
         max_length=2, choices=STATUS, default='01')
+
+    payment_desc = models.TextField()
 
     #foreignKey
     payment_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)

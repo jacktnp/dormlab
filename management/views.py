@@ -67,6 +67,8 @@ def user_home(request):
     invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id)
     if len(invoice) > 0: #there is invoice in this user
         context['invoice'] = invoice[0]
+        if invoice[0].status == '01':
+            context['unpaid'] = 'still on w8ing' #if there's a unpaid invoice invoice'll display
         
     print('this invoice = '+str(invoice[0].total))
     
@@ -91,7 +93,26 @@ def user_bill(request):
 
 @login_required
 def user_payment(request):
-    return render(request, template_name='member/payment.html')
+    context = {}
+    user = Guest.objects.get(id=request.user.id)
+    context['user'] = user
+    contract = Contracting.objects.filter(guest_guest_id_id=user.id)
+    print('contract_id = %d ' % (contract[0].id))
+    # print(contract[0].room_room_id_id)
+    #getGuest's Room
+    room = Room.objects.get(id=contract[len(contract)-1].room_room_id_id)
+    print('this room = '+ room.room_number)
+    context['room'] = room
+    #getGuest's Invoice
+    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id)
+    if len(invoice) > 0:  # there is invoice in this user
+        context['invoice'] = invoice[0]
+
+
+    print('this invoice = '+str(invoice[0].total))
+
+
+    return render(request, template_name='member/payment.html', context=context)
 
 
 @login_required
