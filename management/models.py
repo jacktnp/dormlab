@@ -166,6 +166,7 @@ class Expense(models.Model):
     def __str__(self):
         return "%s "%(self.exp_desc)
 
+
 class Payment(models.Model):
     # fname = models.CharField(max_length=255)
     # lname = models.CharField(max_length=255)
