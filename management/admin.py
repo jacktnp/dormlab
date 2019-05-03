@@ -3,7 +3,7 @@ from django.contrib.auth.models import Permission
 
 #Register your models 
 from  .models import Room, Reporting, Dorm,Contracting, Employee, Report_type,User
-from  .models import Guest, Parcel, Invoice, Invoice_detail, Expense, New
+from  .models import Guest, Parcel, Invoice, Invoice_detail, Expense, New, Payment
 
 
 # class Dormx(admin.StackedInline):
@@ -115,3 +115,4 @@ admin.site.register(Parcel, ParcelAdmin)
 admin.site.register(Invoice,InvoiceAdmin)
 admin.site.register(Invoice_detail,Invoice_detailAdmin)
 admin.site.register(Expense, ExpenseAdmin)
+admin.site.register(Payment)
