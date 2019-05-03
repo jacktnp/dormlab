@@ -181,6 +181,8 @@ class Payment(models.Model):
     payment_confirm = models.CharField(
         max_length=2, choices=STATUS, default='01')
 
+    payment_desc = models.TextField()
+
     #foreignKey
     payment_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
 
