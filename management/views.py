@@ -146,24 +146,41 @@ def user_report(request): #doing
     print('this room = ' + room.room_number)
     context['room'] = room
 
-    # r_type = request.POST.get['report_type']
-
-    report_typies  = Report_type.objects.all() #<======================== doing here
+    report_typies  = Report_type.objects.all()
     # print(report_typies)
     # print('lenoftype = %d' %(len(report_typies)))
     # print(report_typies[1].type_name)
     context['report_typies'] = report_typies
 
+    print(context)
+    print(report_typies)
+
     if request.method == "POST":
+        u_select = request.POST.get('u_select')
+        print(request.POST.get('u_select'))
         form = GuestReportForm(request.POST)
-        print(request.POST.get['report_type'])
-        if form.is_valid():
-            report = form.save(commit=False)
-            report.report_date = datetime.date.today()
-            report.room_room_id = room.id
-            # report.report_type_type_id = 
+        if form.is_valid() and u_select != None:
+            print('all valid')
+            try:
+                print('inthis')
+                report = form.save(commit=False)
+                report.report_date = datetime.date.today()
+                report.room_room_id = room
+                print(room.id)
+                if u_select == 'ปัญหาภายในหอ': rep_id = 1
+                if u_select == 'ปัญหาการรบกวน': rep_id = 2
+                if u_select == 'อื่นๆ': rep_id = 3
+                print(rep_id)
+                report.report_type_type_id = Report_type.objects.get(id=rep_id)
+                print('reporttype_id = '+str(report.report_type_type_id.id))
+                form.save()
+            except Exception as e:
+                print(str(e)+ " errrrrrrrrr")
+
     else:
         form = GuestReportForm()
+
+    context['form'] = form
     
     return render(request, template_name='member/report.html', context=context)
 

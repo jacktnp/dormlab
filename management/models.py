@@ -180,7 +180,7 @@ class Payment(models.Model):
         ('01', 'Unpaid'),
         ('02', 'Paid')
     )
-
+    payment_confirm = models.CharField(max_length=2, choices=STATUS, default='01')
     payment_desc = models.CharField(max_length=255, null=True)
 
     #foreignKey
