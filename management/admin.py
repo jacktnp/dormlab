@@ -78,6 +78,10 @@ class InvoiceAdmin(admin.ModelAdmin):
     list_display=['contracting_contract_id','invoice_date','total','status']
     list_filter = ['invoice_date', 'status']
   # search_fields = ['contracting_contract_id', 'status']
+    # change_list_template = 'admin/sale_summary_change_list.html'
+    # date_hierarchy = 'created'
+
+
 
 class Invoice_detailAdmin(admin.ModelAdmin):
     list_display=['invoice_invoice_id','expense_exp_id','price','unit','__str__']
