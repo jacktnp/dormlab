@@ -84,7 +84,7 @@ class InvoiceAdmin(admin.ModelAdmin):
 
 
 class Invoice_detailAdmin(admin.ModelAdmin):
-    list_display=['invoice_invoice_id','expense_exp_id','price','unit','__str__']
+    list_display=['invoice_invoice_id','expense_exp_id','unit','__str__']
 
 class ParcelAdmin(admin.ModelAdmin):
     list_display=['__str__','arrive_date','post_type',"track_number"]

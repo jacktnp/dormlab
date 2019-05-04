@@ -45,8 +45,8 @@ class Dorm(models.Model):
     dorm_name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     floor = models.IntegerField(default=1)
-    elec_unit = models.DecimalField(max_digits=10, decimal_places=3)
-    water_unit = models.DecimalField(max_digits=10, decimal_places=3)
+    # elec_unit = models.DecimalField(max_digits=10, decimal_places=3)
+    # water_unit = models.DecimalField(max_digits=10, decimal_places=3)
     room_amount = models.IntegerField(default=1)
     tel = models.CharField(max_length=10, unique=True, default='0000000000')
     taxid = models.CharField(max_length=255, unique=True, default='000-000')
@@ -123,7 +123,7 @@ class Invoice(models.Model):
     invoice_date = models.DateField()
     #dorm_name = models.CharField(max_length=255)
     # room_number = models.CharField(max_length=10)
-    month_no = models.IntegerField(default=1)
+    month_no = models.CharField(max_length=7)
     total = models.DecimalField(max_digits=10, decimal_places=3, default=0.0)
     STATUS = (
         ('01', 'wait_pay'),
@@ -150,7 +150,7 @@ class Invoice(models.Model):
     #         proxy = True
 
 class Invoice_detail(models.Model):
-    price = models.DecimalField(max_digits=10, decimal_places=3)
+    # price = models.DecimalField(max_digits=10, decimal_places=3)
     total = models.DecimalField(max_digits=10, decimal_places=3)
     unit = models.DecimalField(max_digits=10, decimal_places=3)
 
@@ -163,6 +163,9 @@ class Invoice_detail(models.Model):
 class Expense(models.Model):
     exp_desc = models.TextField(verbose_name="EXPENSE DESCRIPTION")
     price_per_unit = models.DecimalField(max_digits=10, decimal_places=3 )
+
+    #foreignKey
+    expense_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
     def __str__(self):
         return "%s "%(self.exp_desc)
 
