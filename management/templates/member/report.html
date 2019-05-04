@@ -1,34 +1,34 @@
 {% extends "base.html" %} {% block content%}
 
-    <!-- Report the problem -->
-    <div class="container bg-white p-5 contain">
-        <div class="d-flex justify-content-center">
-            <h1 class="mx-auto mb-4">แจ้งปัญหา</h1>
-        </div>
-        
-        <form>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="type">ประเภท</label>
-                </div>
-                <select class="custom-select" id="type">
+<!-- Report the problem -->
+<div class="container bg-white p-5 contain">
+    <div class="d-flex justify-content-center">
+        <h1 class="mx-auto mb-4">แจ้งปัญหา</h1>
+    </div>
+
+    <form>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="type">ประเภท</label>
+            </div>
+            <select class="custom-select" id="type">
                     <option selected disabled>กรุณาเลือกประเภทที่ต้องการแจ้ง</option>
                     <option value="ปัญหาภายในหอ">ปัญหาภายในหอ</option>
                     <option value="ปัญหาการรบกวน">ปัญหาการรบกวน</option>
                     <option value="อื่นๆ">อื่นๆ</option>
                 </select>
-            </div>
-                    
-            <div class="form-group">
-                <label for="detail">รายละเอียด</label>
-                <textarea class="form-control" id="detail" rows="3"></textarea>
-            </div>
-                    
-            <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary w-100 mt-3">ยันยัน</button>
-            </div>
-        </form>
-    </div> 
-    <!-- / Report the problem -->
+        </div>
+
+        <div class="form-group">
+            <label for="detail">รายละเอียด</label>
+            <textarea class="form-control" id="detail" rows="3"></textarea>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary w-100 mt-3">ยันยัน</button>
+        </div>
+    </form>
+</div>
+<!-- / Report the problem -->
 
 {% endblock content%}

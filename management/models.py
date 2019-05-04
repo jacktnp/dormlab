@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from PIL import Image
+
 import datetime
 
 class Room(models.Model):
@@ -170,8 +172,8 @@ class Expense(models.Model):
 class Payment(models.Model):
     # fname = models.CharField(max_length=255)
     # lname = models.CharField(max_length=255)
-    #amount = models.DecimalField(max_digits=10, decimal_places=3)
-    payment_datetime = models.DateTimeField()
+    # amount = models.DecimalField(max_digits=10, decimal_places=3)
+    payment_datetime = models.DateTimeField(auto_now=True)
     bill_picture = models.ImageField(blank=True, null=True,
                                      upload_to="payments_%Y-%m-%D")  # this models need to install pip pillow
     STATUS = (
@@ -179,12 +181,20 @@ class Payment(models.Model):
         ('02', 'Paid')
     )
 
-    payment_desc = models.TextField()
-    payment_confirm = models.CharField(
-        max_length=2, choices=STATUS, default='01')
+    payment_desc = models.CharField(max_length=255, null=True)
 
     #foreignKey
     payment_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
+
+    # def save(self):
+    #     '''sacling img'''
+    #     super().save()
+
+    #     img = Image.open(self.bill_picture.path)
+    #     if img.height > 300 or img.width > 300:
+    #         output_size = (300,300)
+    #         img.thumbnail(output_size)
+    #         img.save(self.bill_picture.path)
 
 class New(models.Model):
     news_title = models.CharField(max_length=255)
