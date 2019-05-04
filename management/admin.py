@@ -21,15 +21,10 @@ from  .models import Guest, Parcel, Invoice, Invoice_detail, Expense, New, Payme
 
 
 
-
 class DormAdmin(admin.ModelAdmin):
     list_display=['dorm_name','floor','room_amount','location']
     search_fields = ['room_number']
     list_per_page = 10
-    # def dorm_name(self, obj):
-    #     return ('sadsadsad').upper()
-    # dorm_name.shot_description = 'Dorxxx'
-
 
 
 class RoomAdmin(admin.ModelAdmin):
@@ -37,9 +32,7 @@ class RoomAdmin(admin.ModelAdmin):
     list_filter = ['dorm_dorm_id',  'room_floor', 'room_type','status']
     search_fields = ['room_number']
     ordering = ['room_number']
-    def dorm_dorm_id(obj):
-        return "panggggg"
-    dorm_dorm_id.short_description = 'dorm_dorm_id'
+
 
 
 
@@ -85,6 +78,10 @@ class InvoiceAdmin(admin.ModelAdmin):
     list_display=['contracting_contract_id','invoice_date','total','status']
     list_filter = ['invoice_date', 'status']
   # search_fields = ['contracting_contract_id', 'status']
+    # change_list_template = 'admin/sale_summary_change_list.html'
+    # date_hierarchy = 'created'
+
+
 
 class Invoice_detailAdmin(admin.ModelAdmin):
     list_display=['invoice_invoice_id','expense_exp_id','price','unit','__str__']
