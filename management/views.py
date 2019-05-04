@@ -60,7 +60,7 @@ def user_home(request):
     context = {}
     user = Guest.objects.get(id=request.user.id)
     contract = Contracting.objects.filter(guest_guest_id_id=user.id)
-    print('contract_id = %d '%(contract[0].id))
+    # print('contract_id = %d '%(contract[0].id))
     # print(contract[0].room_room_id_id)
     #getGuest's Room
     room = Room.objects.get(id=contract[len(contract)-1].room_room_id_id)
