@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 
 # from PIL import Image
 
@@ -21,20 +21,20 @@ class Room(models.Model):
         ('01', "Fan"),
         ('02', "AirCondition"),
     )
-    room_type = models.CharField(max_length=2, choices=TYPES, default='01')
+    room_type = models.CharField(max_length=2, choices=TYPES, default='01', verbose_name="ROOM TYPE")
 
     #foreignKey
-    dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
+    dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT, verbose_name="DORM NAME")
     def __str__(self):
         return "From %s - Room: %s"%(self.dorm_dorm_id,self.room_number)
 
 class Reporting(models.Model):
-    report_desc = models.TextField()
+    report_desc = models.TextField( verbose_name="REPORT DESCRIPTION")
     report_date = models.DateTimeField()
 
     #foreignKey
-    report_type_type_id = models.ForeignKey('Report_type', on_delete=models.PROTECT)
-    room_room_id = models.ForeignKey('Room', on_delete=models.PROTECT)
+    report_type_type_id = models.ForeignKey('Report_type', on_delete=models.PROTECT, verbose_name="REPORT TYPE")
+    room_room_id = models.ForeignKey('Room', on_delete=models.PROTECT, verbose_name="DORM NAME")
 
 class Report_type(models.Model):
     type_name = models.CharField(max_length=100)
@@ -54,6 +54,7 @@ class Dorm(models.Model):
     def __str__(self):
         return "%s"%(self.dorm_name)
 
+
 class Employee(User):
     # owner = models.BooleanField(default=False)
     # emp_fname = models.CharField(max_length=255)
@@ -63,7 +64,7 @@ class Employee(User):
 
     #foreignKey
     # emp_id = models.OneToOneField(User, on_delete=models.PROTECT)
-    dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
+    dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT, verbose_name="DORM NAME")
 
     class Meta:
         verbose_name = 'Employee'
@@ -81,8 +82,8 @@ class Contracting(models.Model):
     dmg_deposit = models.DecimalField(max_digits=10, decimal_places=3)
 
     #foreignKey
-    room_room_id = models.ForeignKey(Room, on_delete=models.PROTECT)
-    guest_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
+    room_room_id = models.ForeignKey(Room, on_delete=models.PROTECT, verbose_name="ROOM NUMBER")
+    guest_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT, verbose_name="GUEST NAME")
     def __str__(self):
         return "Guest :%s | %s"%(self.guest_guest_id, self.room_room_id)
 
@@ -94,7 +95,6 @@ class Guest(User):
     address = models.TextField()
     line = models.CharField(max_length=255, null=True)
     phone = models.CharField(max_length=10, unique=True)
-
     #foreignKey
     # guest_id = models.OneToOneField(User, on_delete=models.PROTECT)
     class Meta:
@@ -125,20 +125,16 @@ class Invoice(models.Model):
     # room_number = models.CharField(max_length=10)
     month_no = models.IntegerField(default=1)
     total = models.DecimalField(max_digits=10, decimal_places=3, default=0.0)
-    
     STATUS = (
         ('01', 'wait_pay'),
         ('02', 'wait_confirm'),
         ('03', 'conform')
     )
     status = models.CharField(max_length=2, choices=STATUS, default='01')
-
     #foreignKey
-    contracting_contract_id = models.ForeignKey('Contracting', on_delete=models.PROTECT)
-
+    contracting_contract_id = models.ForeignKey('Contracting', on_delete=models.PROTECT, verbose_name="CONTRACT NAME")
     def __str__(self):
         return "%s "%(self.contracting_contract_id)
-
     #yyyy-mm-dd
     def month_now(self):
         month = {
@@ -147,12 +143,11 @@ class Invoice(models.Model):
             '09' : 'กันยายน', '10' : 'ตุลาคม', '11' : 'พฤศจิกายน', '12' : 'ธันวาคม'
         }
         # print(self.invoice_date.strftime[5:7:])
-        
         return month[str(self.invoice_date)[5:7]]
-
     def year_now(self):
         return int(str(self.invoice_date)[:4])+543
-            
+    # class Meta:
+    #         proxy = True
 
 class Invoice_detail(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=3)
@@ -160,47 +155,39 @@ class Invoice_detail(models.Model):
     unit = models.DecimalField(max_digits=10, decimal_places=3)
 
     #foreignKey
-    invoice_invoice_id = models.ForeignKey('Invoice', on_delete=models.PROTECT)
-    expense_exp_id = models.ForeignKey('Expense', on_delete=models.PROTECT)
+    invoice_invoice_id = models.ForeignKey('Invoice', on_delete=models.PROTECT, verbose_name="GUEST INVOICE")
+    expense_exp_id = models.ForeignKey('Expense', on_delete=models.PROTECT, verbose_name="EXPENSE DESCRIPTION")
     def __str__(self):
         return "%.2f "%(self.price*self.unit)
 
 class Expense(models.Model):
-    exp_desc = models.TextField()
-    price_per_unit = models.DecimalField(max_digits=10, decimal_places=3)
+    exp_desc = models.TextField(verbose_name="EXPENSE DESCRIPTION")
+    price_per_unit = models.DecimalField(max_digits=10, decimal_places=3 )
     def __str__(self):
         return "%s "%(self.exp_desc)
 
 class Payment(models.Model):
     # fname = models.CharField(max_length=255)
     # lname = models.CharField(max_length=255)
-    # amount = models.DecimalField(max_digits=10, decimal_places=3)
-    payment_datetime = models.DateTimeField(auto_now=True)
+    #amount = models.DecimalField(max_digits=10, decimal_places=3)
+    payment_datetime = models.DateTimeField()
     bill_picture = models.ImageField(blank=True, null=True,
                                      upload_to="payments_%Y-%m-%D")  # this models need to install pip pillow
     STATUS = (
         ('01', 'Unpaid'),
         ('02', 'Paid')
     )
-    payment_confirm = models.CharField(max_length=2, choices=STATUS, default='01')
-    payment_desc = models.CharField(max_length=255, null=True)
+    payment_desc = models.TextField(verbose_name="PAYMENT DESCRIPTION")
+    payment_confirm = models.CharField(
+        max_length=2, choices=STATUS, default='01')
 
     #foreignKey
-    payment_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
-
-    # def save(self):
-    #     '''sacling img'''
-    #     super().save()
-
-    #     img = Image.open(self.bill_picture.path)
-    #     if img.height > 300 or img.width > 300:
-    #         output_size = (300,300)
-    #         img.thumbnail(output_size)
-    #         img.save(self.bill_picture.path)
+    payment_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT, verbose_name="GUEST NAME")
 
 class New(models.Model):
     news_title = models.CharField(max_length=255)
     news_content =  models.TextField()
+
     #foreignKey
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
     def __str__(self):

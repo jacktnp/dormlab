@@ -106,7 +106,7 @@ class InvoiceAdmin(admin.ModelAdmin):
     list_display=['contracting_contract_id','invoice_date','total','status']
     list_filter = ['invoice_date', 'status']
   # search_fields = ['contracting_contract_id', 'status']
-    # change_list_template = 'admin/sale_summary_change_list.html'
+    # change_list_template = 'admin/chart.html'
     # date_hierarchy = 'created'
 
 
