@@ -29,9 +29,10 @@ def login_page(request):
             if next_url:
                 return redirect(next_url)
             else:
-                return redirect('user_index')
-
-            return redirect('user_index')
+                if request.user.is_staff:
+                    return redirect ('/admin')
+                else:
+                    return redirect ('user_index')
         else:
 
             context['username'] = username
@@ -72,7 +73,7 @@ def user_home(request):
         if invoice[0].status == '01':
             context['unpaid'] = 'still on w8ing' #if there's a unpaid invoice invoice'll display
         
-    print('this invoice = '+str(invoice[0].total))
+    #print('this invoice = '+str(invoice[0].total))
     
 
     #getGuest's Dorm
@@ -111,7 +112,7 @@ def user_payment(request): #got a problem
 
     if len(invoice) > 0:  # there is invoice in this user
         context['invoice'] = invoice[0]
-    print('this invoice = '+str(invoice[0].total))
+    #print('this invoice = '+str(invoice[0].total))
 
 #===========================form=====================================
     if request.method == 'POST':
@@ -192,4 +193,3 @@ def user_detail(request):
 @login_required
 def contract(request):
     return render(request, template_name='member/contract.html')
-
