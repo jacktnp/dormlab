@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Room, Contracting, Dorm, Guest, Invoice
+from .models import Room, Contracting, Dorm, Guest, Invoice, Payment, Report_type
+
+from .forms import GuestPaymentForm, GuestReportForm
 
 import datetime
 
@@ -92,32 +94,95 @@ def user_bill(request):
 
 
 @login_required
-def user_payment(request):
+def user_payment(request): #got a problem
     context = {}
+
     user = Guest.objects.get(id=request.user.id)
     context['user'] = user
     contract = Contracting.objects.filter(guest_guest_id_id=user.id)
     print('contract_id = %d ' % (contract[0].id))
-    # print(contract[0].room_room_id_id)
+
     #getGuest's Room
     room = Room.objects.get(id=contract[len(contract)-1].room_room_id_id)
     print('this room = '+ room.room_number)
     context['room'] = room
     #getGuest's Invoice
     invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id)
+
     if len(invoice) > 0:  # there is invoice in this user
         context['invoice'] = invoice[0]
-
-
     print('this invoice = '+str(invoice[0].total))
 
+#===========================form=====================================
+    if request.method == 'POST':
+        form = GuestPaymentForm(request.POST, request.FILES)
+        print('aaaaaaaaaa')
+        print(request.user.id)
+        if form.is_valid():
+            print('asdada')
+            payment = form.save(commit=False)
+            payment.payment_guest_id = request.user.id
+            form.save()
+    else:
+        form = GuestPaymentForm()
+
+    context['form'] = form
+#===========================form=====================================
 
     return render(request, template_name='member/payment.html', context=context)
 
 
 @login_required
-def user_report(request):
-    return render(request, template_name='member/report.html')
+def user_report(request): #doing
+    context = {}
+
+    user = Guest.objects.get(id=request.user.id)
+    context['user'] = user
+    contract = Contracting.objects.filter(guest_guest_id_id=user.id)
+    print('contract_id = %d ' % (contract[0].id))
+
+    #getGuest's Room
+    room = Room.objects.get(id=contract[len(contract)-1].room_room_id_id)
+    print('this room = ' + room.room_number)
+    context['room'] = room
+
+    report_typies  = Report_type.objects.all()
+    # print(report_typies)
+    # print('lenoftype = %d' %(len(report_typies)))
+    # print(report_typies[1].type_name)
+    context['report_typies'] = report_typies
+
+    print(context)
+    print(report_typies)
+
+    if request.method == "POST":
+        u_select = request.POST.get('u_select')
+        print(request.POST.get('u_select'))
+        form = GuestReportForm(request.POST)
+        if form.is_valid() and u_select != None:
+            print('all valid')
+            try:
+                print('inthis')
+                report = form.save(commit=False)
+                report.report_date = datetime.date.today()
+                report.room_room_id = room
+                print(room.id)
+                if u_select == 'ปัญหาภายในหอ': rep_id = 1
+                if u_select == 'ปัญหาการรบกวน': rep_id = 2
+                if u_select == 'อื่นๆ': rep_id = 3
+                print(rep_id)
+                report.report_type_type_id = Report_type.objects.get(id=rep_id)
+                print('reporttype_id = '+str(report.report_type_type_id.id))
+                form.save()
+            except Exception as e:
+                print(str(e)+ " errrrrrrrrr")
+
+    else:
+        form = GuestReportForm()
+
+    context['form'] = form
+    
+    return render(request, template_name='member/report.html', context=context)
 
 
 @login_required
