@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from PIL import Image
+# from PIL import Image
 
 import datetime
 
@@ -121,7 +121,6 @@ class Invoice(models.Model):
     #dorm_name = models.CharField(max_length=255)
     # room_number = models.CharField(max_length=10)
     month_no = models.IntegerField(default=1)
-    rent_number = models.IntegerField(default=0)
     total = models.DecimalField(max_digits=10, decimal_places=3, default=0.0)
     
     STATUS = (

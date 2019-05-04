@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Room, Contracting, Dorm, Guest, Invoice, Payment, Report_type
+from .models import Room, Contracting, Dorm, Guest, Invoice, Payment, Report_type, New, Parcel
 
 from .forms import GuestPaymentForm, GuestReportForm
 
@@ -72,9 +72,8 @@ def user_home(request):
         if invoice[0].status == '01':
             context['unpaid'] = 'still on w8ing' #if there's a unpaid invoice invoice'll display
         
-    print('this invoice = '+str(invoice[0].total))
+    # print('this invoice = '+str(invoice[0].total))
     
-
     #getGuest's Dorm
     dorm = Dorm.objects.get(id=room.dorm_dorm_id_id)
     print(dorm.dorm_name)
@@ -85,7 +84,31 @@ def user_home(request):
 
 @login_required
 def user_annouce(request):
-    return render(request, template_name='member/annouce.html')
+    context = {}
+    user = Guest.objects.get(id=request.user.id)
+    contract = Contracting.objects.filter(guest_guest_id_id=user.id)
+    #getGuest's Room
+    room = Room.objects.get(id=contract[len(contract)-1].room_room_id_id)
+    #getGuest's Dorm
+    dorm = Dorm.objects.get(id=room.dorm_dorm_id_id)
+
+    #==================================anounce====================================
+    anounce = New.objects.filter(dorm_dorm_id_id=dorm.id).order_by('id').reverse()
+    if len(anounce) > 0:
+        context['show_news'] = "there're anoucements"
+        if len(anounce) > 5:
+            anounce = anounce[:5]
+            context['anounce'] = anounce
+        else:
+            context['anounce'] = anounce
+    #==================================anounce====================================
+    #==================================Parcels====================================
+    parcels = Parcel.objects.all()
+    if len(parcels) > 0:
+        context['parcels'] = parcels
+    #==================================Parcels====================================
+
+    return render(request, template_name='member/annouce.html', context=context)
 
 
 @login_required
