@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Room, Contracting, Dorm, Guest, Invoice, Payment, Report_type
 
-from django.contrib.auth.hashers import make_password
-
 from .forms import GuestPaymentForm, GuestReportForm
 
 import datetime
@@ -195,7 +193,3 @@ def user_detail(request):
 @login_required
 def contract(request):
     return render(request, template_name='member/contract.html')
-
-def register_admin(request):
-    
-    return render(request, template_name='dormlab/register.html')
