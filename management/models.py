@@ -116,6 +116,9 @@ class Parcel(models.Model):
     def __str__(self):
         return "%s %s"%(self.fname_guest, self.lname_guest)
 
+    def year_now(self):
+        return int(str(self.arrive_date)[:4])+543
+
 class Invoice(models.Model):
     invoice_date = models.DateField()
     #dorm_name = models.CharField(max_length=255)

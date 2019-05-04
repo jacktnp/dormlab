@@ -17,7 +17,7 @@
         {% for parcel in parcels %}
         <div class="col-md-6">
             <div class="annouce p-3 my-2 bg-info text-white rounded">
-                <b>11/03/62 | </b> {{parcel.fname_guest}} {{parcel.lname_guest}}
+                <i class="fas fa-box text-warning"></i> <b>{{parcel.arrive_date |date:'d-m'}}-{{parcel.year_now}} | </b> {{parcel.fname_guest}} {{parcel.lname_guest}}
             </div>
         </div>
         {%endfor%}
