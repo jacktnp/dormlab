@@ -24,7 +24,7 @@ class Room(models.Model):
     #foreignKey
     dorm_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
     def __str__(self):
-        return "%s"%(self.room_number)
+        return "From %s - Room: %s"%(self.dorm_dorm_id,self.room_number)
 
 class Reporting(models.Model):
     report_desc = models.TextField()
@@ -82,7 +82,7 @@ class Contracting(models.Model):
     room_room_id = models.ForeignKey(Room, on_delete=models.PROTECT)
     guest_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT)
     def __str__(self):
-        return "%s"%(self.guest_guest_id)
+        return "Guest :%s | %s"%(self.guest_guest_id, self.room_room_id)
 
 class Guest(User):
     # guest_fname = models.CharField(max_length=255)
@@ -119,7 +119,6 @@ class Invoice(models.Model):
     #dorm_name = models.CharField(max_length=255)
     # room_number = models.CharField(max_length=10)
     month_no = models.IntegerField(default=1)
-    rent_number = models.IntegerField(default=0)
     total = models.DecimalField(max_digits=10, decimal_places=3, default=0.0)
     
     STATUS = (
