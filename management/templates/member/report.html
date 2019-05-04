@@ -6,22 +6,24 @@
         <h1 class="mx-auto mb-4">แจ้งปัญหา</h1>
     </div>
 
-    <form>
+    <form method="POST" action="{%url 'user_report'%}">
+        {%csrf_token%}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <label class="input-group-text" for="type">ประเภท</label>
             </div>
-            <select class="custom-select" id="type">
+            <select name="u_select" class="custom-select" id="type">
                     <option selected disabled>กรุณาเลือกประเภทที่ต้องการแจ้ง</option>
-                    <option value="ปัญหาภายในหอ">ปัญหาภายในหอ</option>
-                    <option value="ปัญหาการรบกวน">ปัญหาการรบกวน</option>
-                    <option value="อื่นๆ">อื่นๆ</option>
+                    {% for report in report_typies%}
+                    <option value="{{report.type_name}}">{{report.type_name}}</option>
+                    {%endfor%}
                 </select>
         </div>
 
         <div class="form-group">
             <label for="detail">รายละเอียด</label>
-            <textarea class="form-control" id="detail" rows="3"></textarea>
+            <!-- <textarea class="form-control" id="detail" rows="3"></textarea>  -->
+            {{form.report_desc}}
         </div>
 
         <div class="d-flex justify-content-center">

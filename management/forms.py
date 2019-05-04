@@ -4,9 +4,9 @@ from django.core.exceptions import ValidationError
 from .models import Payment, Reporting
 
 class GuestPaymentForm(forms.ModelForm):
-    bill_attr = {'type' :"file", 'class': "custom-file-input", 'id': "customFile"}
-    date_attr = {'type': "datetime-local", 'class': "form-control", 'id': "taxid"}
-    desc_attr = {'class': "form-control" ,'id': "notice" ,'rows': "3"}
+    bill_attr = {'type' :"file", 'class': "custom-file-input"}
+    date_attr = {'type': "datetime-local", 'class': "form-control"}
+    desc_attr = {'class': "form-control" ,'rows': "3"}
 
 
     bill_picture = forms.ImageField(
@@ -24,7 +24,7 @@ class GuestPaymentForm(forms.ModelForm):
 class GuestReportForm(forms.ModelForm):
     desc_attr = {'class': "form-control", 'id': "detail", 'rows': "3"}
 
-    payment_desc = forms.CharField(widget=forms.Textarea(attrs=desc_attr))
+    report_desc = forms.CharField(widget=forms.Textarea(attrs=desc_attr))
 
     class Meta:
         model = Reporting
