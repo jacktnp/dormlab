@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Room, Contracting, Dorm, Guest, Invoice, Payment, Report_type
 
+from django.contrib.auth.hashers import make_password
+
 from .forms import GuestPaymentForm, GuestReportForm
 
 import datetime
@@ -29,9 +31,10 @@ def login_page(request):
             if next_url:
                 return redirect(next_url)
             else:
-                return redirect('user_index')
-
-            return redirect('user_index')
+                if request.user.is_staff:
+                    return redirect ('/admin')
+                else:
+                    return redirect ('user_index')
         else:
 
             context['username'] = username
@@ -193,3 +196,6 @@ def user_detail(request):
 def contract(request):
     return render(request, template_name='member/contract.html')
 
+def register_admin(request):
+    
+    return render(request, template_name='dormlab/register.html')
