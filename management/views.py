@@ -73,7 +73,7 @@ def user_home(request):
         if invoice[0].status == '01':
             context['unpaid'] = 'still on w8ing' #if there's a unpaid invoice invoice'll display
         
-    print('this invoice = '+str(invoice[0].total))
+    #print('this invoice = '+str(invoice[0].total))
     
 
     #getGuest's Dorm
@@ -112,7 +112,7 @@ def user_payment(request): #got a problem
 
     if len(invoice) > 0:  # there is invoice in this user
         context['invoice'] = invoice[0]
-    print('this invoice = '+str(invoice[0].total))
+    #print('this invoice = '+str(invoice[0].total))
 
 #===========================form=====================================
     if request.method == 'POST':
