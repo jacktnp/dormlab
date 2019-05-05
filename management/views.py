@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Room, Contracting, Dorm, Guest, Invoice, Payment, Report_type, New, Parcel
+from .models import Room, Contracting, Dorm, Guest, Invoice, Payment, Report_type, New, Parcel, Expense, Invoice_detail
 
 from .forms import GuestPaymentForm, GuestReportForm
 
@@ -112,7 +112,49 @@ def user_annouce(request):
 
 @login_required
 def user_bill(request):
-    return render(request, template_name='member/bill.html')
+    context = {}
+    #invoice, expense, invoice_detail, room
+    user = Guest.objects.get(id=request.user.id)
+    context['user'] = user
+    contract = Contracting.objects.filter(guest_guest_id_id=user.id)
+    #getGuest's Room
+    room = Room.objects.get(id=contract[len(contract)-1].room_room_id_id)
+    context['room'] = room
+    #getGuest's Dorm
+    dorm = Dorm.objects.get(id=room.dorm_dorm_id_id)
+
+    invoice = Invoice.objects.filter(
+        contracting_contract_id_id=contract[0].id)
+    context['invoices'] = invoice
+    print(len(invoice))
+
+    expense = Expense.objects.filter(expense_dorm_id=dorm.id)
+    print(expense)
+    print([expense[i].id for i in range(len(expense))])
+    invoice_detail = Invoice_detail.objects.select_related("expense_exp_id").filter(
+        expense_exp_id__in=[i.id for i in expense],
+        invoice_invoice_id_id__in = [i.id for i in invoice]
+    ).select_related("invoice_invoice_id").order_by('invoice_invoice_id__invoice_date').reverse()
+    context['indetails'] = invoice_detail
+
+    #arrange invoice
+    amount = []
+    ide = {}
+    for i in range(len(invoice_detail)):
+        if invoice_detail[i].__dict__['invoice_invoice_id_id'] not in amount:
+            amount.append(invoice_detail[i].__dict__['invoice_invoice_id_id'])
+    print(amount)
+    for i in amount:
+        ide[i] = []
+    print(ide)
+    for i in amount:
+        for j in invoice_detail:
+            if j.__dict__['invoice_invoice_id_id'] == i:
+                ide[i].append(j)
+
+    print(ide)
+
+    return render(request, template_name='member/bill.html', context=context)
 
 
 @login_required

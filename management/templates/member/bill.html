@@ -4,7 +4,7 @@
     <h4 class="text-center mb-3">บิลล่าสุด</h4>
     <div class="row">
         <div class="col-sm-9">
-            <h5>บิลประจำเดือน <span class="text-primary">เมษายน</span> ยอดชำระ <span class="text-danger">5490</span> บาท
+            <h5>บิลประจำเดือน <span class="text-primary">{{invoices.0.month_now}}</span> ยอดชำระ <span class="text-danger">{{invoices.0.total|stringformat:".2f"}}</span> บาท
             </h5>
         </div>
         <div class="col-sm-3">
@@ -21,15 +21,15 @@
                     <th width="15%">จำนวนเงิน</th>
                 </tr>
                 <tr>
-                    <td>ค่าเช่าห้องเดือนเมษายน 2562</td>
+                    <td>ค่าเช่าห้องเดือน{{indetails.0.invoice_invoice_id.month_now}} {{indetails.0.invoice_invoice_id.year_now}}</td>
                     <td>1</td>
-                    <td>5000.00</td>
-                    <td>5000.00</td>
+                    <td>{{room.room_rate|stringformat:".2f"}}</td>
+                    <td>{{room.room_rate|stringformat:".2f"}}</td>
                 </tr>
                 <tr>
-                    <td>ค่าไฟฟ้า+ไฟส่วนกลาง</td>
-                    <td>263</td>
-                    <td>8.00</td>
+                    <td>{{indetails.0.expense_exp_id.exp_desc}}</td>
+                    <td>{{indetails.0.unit|stringformat:"d"}}</td>
+                    <td>{{indetails.0.expense_exp_id.price_per_unit}}</td>
                     <td>2104.00</td>
                 </tr>
                 <tr>

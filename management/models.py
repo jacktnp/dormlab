@@ -157,8 +157,8 @@ class Invoice_detail(models.Model):
     #foreignKey
     invoice_invoice_id = models.ForeignKey('Invoice', on_delete=models.PROTECT, verbose_name="GUEST INVOICE")
     expense_exp_id = models.ForeignKey('Expense', on_delete=models.PROTECT, verbose_name="EXPENSE DESCRIPTION")
-    def __str__(self):
-        return "%.2f "%(self.price*self.unit)
+    # def __str__(self):
+    #     return "%.2f "%(self.price*self.unit)
 
 class Expense(models.Model):
     exp_desc = models.TextField(verbose_name="EXPENSE DESCRIPTION")
