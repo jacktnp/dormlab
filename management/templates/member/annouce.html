@@ -4,43 +4,25 @@
     <h4 class="text-center mb-3"><i class="fas fa-bullhorn"></i> ประกาศ</h4>
     <div class="row">
         <div class="col-md-12">
+            {%if show_news%} {% for new in anounce%}
             <div class="annouce p-3 my-2 bg-secondary text-white rounded">
-                <i class="fas fa-exclamation-triangle text-warning"></i> <b>อย่าลืม</b> ชำระค่าหอพักก่อนวันที่ 5 ของทุกเดือน
+                <i class="fas fa-exclamation-triangle text-warning"></i> <b>{{new.news_title}}</b> {{new.news_content}}
             </div>
-            <div class="annouce p-3 my-2 bg-secondary text-white rounded">
-                <i class="fas fa-exclamation-triangle text-warning"></i> <b>อย่าลืม</b> ชำระค่าหอพักก่อนวันที่ 5 ของทุกเดือน
-            </div>
-            <div class="annouce p-3 my-2 bg-secondary text-white rounded">
-                <i class="fas fa-exclamation-triangle text-warning"></i> <b>อย่าลืม</b> ชำระค่าหอพักก่อนวันที่ 5 ของทุกเดือน
-            </div>
-            <div class="annouce p-3 my-2 bg-secondary text-white rounded">
-                <i class="fas fa-exclamation-triangle text-warning"></i> <b>อย่าลืม</b> ชำระค่าหอพักก่อนวันที่ 5 ของทุกเดือน
-            </div>
-            <div class="annouce p-3 my-2 bg-secondary text-white rounded">
-                <i class="fas fa-exclamation-triangle text-warning"></i> <b>อย่าลืม</b> ชำระค่าหอพักก่อนวันที่ 5 ของทุกเดือน
-            </div>
+            {%endfor%} {%endif%}
         </div>
     </div>
     <br><br>
     <h4 class="text-center mb-3"><i class="fas fa-box-open"></i> พัสดุ</h4>
     <div class="row">
+        {% for parcel in parcels %}
         <div class="col-md-6">
             <div class="annouce p-3 my-2 bg-info text-white rounded">
-                <span class="badge badge-pill badge-success">รับแล้ว</span> <b>11/03/62 | </b> นายธนพนธ์ วงศ์ประเสริฐ (ห้องพัก 2409)
+                <b>11/03/62 | </b> {{parcel.fname_guest}} {{parcel.lname_guest}}
             </div>
         </div>
+        {%endfor%}
 
-        <div class="col-md-6">
-            <div class="annouce p-3 my-2 bg-info text-white rounded">
-                <span class="badge badge-pill badge-success">รับแล้ว</span> <b>05/03/62 | </b> นายปรัชญา ประภาวัต (ห้องพัก 305)
-            </div>
-        </div>
 
-        <div class="col-md-6">
-            <div class="annouce p-3 my-2 bg-info text-white rounded">
-                <span class="badge badge-pill badge-danger">ยังไม่รับ</span> <b>20/02/62 | </b> นายตฤณภัทร ปลั่งศรี (ห้องพัก 305)
-            </div>
-        </div>
     </div>
 </div>
 
