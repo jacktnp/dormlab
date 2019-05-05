@@ -7,8 +7,14 @@
             <h5>บิลประจำเดือน <span class="text-primary">{{indetails.0.0.invoice_invoice_id.month_now}}</span> ยอดชำระ <span class="text-danger">{{indetails.0.0.invoice_invoice_id.total|stringformat:".2f"}}</span> บาท
             </h5>
         </div>
+        {%if invoicehis %}
         <div class="col-sm-3">
             <a href="{% url 'user_payment' %}" class="btn btn-danger">ยังไม่ชำระ</a>
+            <!--  -->
+            {%if paid %}
+            <a @click.prevent='' href="{% url 'user_bill' %}" class="btn btn-success">ชำระแล้ว</a>
+            <!--  -->
+            {%endif%}
             <a href="{% url 'user_detail' %}" class="btn btn-info" data-toggle="collapse" data-target="#detail_id" aria-expanded="false" aria-controls="collapseExample">รายละเอียด</a>
         </div>
         <!-- รายละเอียด -->
@@ -26,82 +32,72 @@
                     <td>{{room.room_rate|stringformat:".2f"}}</td>
                     <td>{{room.room_rate|stringformat:".2f"}}</td>
                 </tr>
+                {% for i in indetails.0%}
+                <!--  -->
                 <tr>
-                    <td>{{indetails.0.0.expense_exp_id.exp_desc}}</td>
-                    <td>{{indetails.0.0.unit|stringformat:"d"}}</td>
-                    <td>{{indetails.0.0.expense_exp_id.price_per_unit|stringformat:".2f"}}</td>
-                    <td>2104.00</td>
+                    <td>{{i.expense_exp_id.exp_desc}}</td>
+                    <td>{{i.unit|stringformat:"d"}}</td>
+                    <td>{{i.expense_exp_id.price_per_unit|stringformat:".2f"}}</td>
+                    <td>{{i.total|stringformat:".2f"}}</td>
                 </tr>
-                {% for i in indetails%}
-                <tr>
-                    <td>{{i.0.expense_exp_id.exp_desc}}</td>
-                    <td>{{i.0.unit|stringformat:"d"}}</td>
-                    <td>{{i.0.expense_exp_id.price_per_unit|stringformat:".2f"}}</td>
-                    <td>{{i.0.total|stringformat:".2f"}}</td>
-                </tr>
+                <!--  -->
                 {% endfor %}
                 <tr>
                     <td colspan="3">จำเงินรวมทั้งสิ้น</td>
-                    <td>7380.00</td>
+                    <td>{{indetails.0.0.invoice_invoice_id.total|stringformat:".2f"}}</td>
                 </tr>
             </table>
         </div>
         <!-- รายละเอียด -->
+        {%endif%}
     </div>
 </div>
 
 <div class="container bg-white p-5 my-4 contain">
     <h4 class="mb-3 text-center">ประวัติการชำระเงิน</h4>
-    <br>
+    <br> {%if invoicehis %}
+    <!--add if invoice later ---------- -->
+    {% for details in indetails %}
     <div class="row mt-3">
-        <div class="col-sm-2 font-weight-bold">เมษายน 2562</div>
-        <div class="col-sm-2">ค่าไฟ 103 หน่วย</div>
-        <div class="col-sm-2">ค่าน้ำ 4 หน่วย</div>
-        <div class="col-sm-2 text-primary font-weight-bold">7030.00 บาท</div>
-        <div class="col-sm-4 buttop"><button class="btn btn-outline-primary w-100" data-toggle="collapse" data-target="#detail_id2" aria-expanded="false" aria-controls="detail_id2">ดูรายละเอียด</button></div>
+        <div class="col-sm-2 font-weight-bold">{{details.0.invoice_invoice_id.month_now}} {{details.0.invoice_invoice_id.year_now}}</div>
+        <div class="col-sm-2">{{details.0.expense_exp_id.exp_desc}} {{details.0.unit|stringformat:"d"}} หน่วย</div>
+        <div class="col-sm-2">{{details.1.expense_exp_id.exp_desc}} {{details.1.unit|stringformat:"d"}} หน่วย</div>
+        <div class="col-sm-2 text-primary font-weight-bold">{{details.0.invoice_invoice_id.total|stringformat:".2f"}} บาท</div>
+        <div class="col-sm-4 buttop"><button class="btn btn-outline-primary w-100" data-toggle="collapse" data-target="#detail_id{{details.0.invoice_invoice_id_id}}" aria-expanded="false" aria-controls="detail_id2">ดูรายละเอียด</button></div>
     </div>
     <!-- รายละเอียด -->
-        <div class="col-12 border rounded p-3 mt-4 collapse" id="detail_id2">
-            <table width="100%">
-                <tr>
-                    <th width="50%">รายการ</th>
-                    <th width="15%">จำนวน</th>
-                    <th width="20%">ต่อหน่วย</th>
-                    <th width="15%">จำนวนเงิน</th>
-                </tr>
-                <tr>
-                    <td>ค่าเช่าห้องเดือนเมษายน 2562</td>
-                    <td>1</td>
-                    <td>5000.00</td>
-                    <td>5000.00</td>
-                </tr>
-                <tr>
-                    <td>ค่าไฟฟ้า+ไฟส่วนกลาง</td>
-                    <td>263</td>
-                    <td>8.00</td>
-                    <td>2104.00</td>
-                </tr>
-                <tr>
-                    <td>ค่าน้ำประปา+น้ำส่วนกลาง</td>
-                    <td>7</td>
-                    <td>18.00</td>
-                    <td>126.00</td>
-                </tr>
-                <tr>
-                    <td>ค่าบริการอินเตอร์เน็ต</td>
-                    <td>1</td>
-                    <td>150.00</td>
-                    <td>150.00</td>
-                </tr>
-                <tr>
-                    <td colspan="3">จำเงินรวมทั้งสิ้น</td>
-                    <td>7380.00</td>
-                </tr>
-            </table>
-        </div>
-        <!-- รายละเอียด -->
+    <div class="col-12 border rounded p-3 mt-4 collapse" id="detail_id{{details.0.invoice_invoice_id_id}}">
+        <table width="100%">
+            <tr>
+                <th width="50%">รายการ</th>
+                <th width="15%">จำนวน</th>
+                <th width="20%">ต่อหน่วย</th>
+                <th width="15%">จำนวนเงิน</th>
+            </tr>
+            <tr>
+                <td>ค่าเช่าห้อง{{details.0.invoice_invoice_id.month_now}} {{details.0.invoice_invoice_id.year_now}}</td>
+                <td>1</td>
+                <td>{{room.room_rate|stringformat:".2f"}}</td>
+                <td>{{room.room_rate|stringformat:".2f"}}</td>
+            </tr>
+            {% for d in details %}
+            <tr>
+                <td>{{d.expense_exp_id.exp_desc}}</td>
+                <td>{{d.unit|stringformat:"d"}}</td>
+                <td>{{d.expense_exp_id.price_per_unit|stringformat:".2f"}}</td>
+                <td>{{d.total|stringformat:".2f"}}</td>
+            </tr>
+            {%endfor%}
+            <tr>
+                <td colspan="3">จำเงินรวมทั้งสิ้น</td>
+                <td>{{details.0.invoice_invoice_id.total|stringformat:".2f"}}</td>
+            </tr>
+        </table>
+    </div>
+    <!-- รายละเอียด -->
+    {% endfor %} {%endif%}
 
-    <div class="row mt-3">
+    <!-- <div class="row mt-3">
         <div class="col-sm-2 font-weight-bold">มีนาคม 2562</div>
         <div class="col-sm-2">ค่าไฟ 56 หน่วย</div>
         <div class="col-sm-2">ค่าน้ำ 3 หน่วย</div>
@@ -123,46 +119,8 @@
         <div class="col-sm-2">ค่าน้ำ 1 หน่วย</div>
         <div class="col-sm-2 text-primary font-weight-bold">5310.00 บาท</div>
         <div class="col-sm-4 buttop"><button class="btn btn-outline-primary w-100" data-toggle="collapse" data-target="#detail_id2" aria-expanded="false" aria-controls="detail_id2">ดูรายละเอียด</button></div>
-    </div>
-    <!--
-    <table width="100%">
-        <tr>
-            <th width="20%">เดือน</th>
-            <th width="20%">รวม</th>
-            <th width="20%">ค่าไฟ (หน่วย)</th>
-            <th width="20%">ค่าน้ำ (หน่วย)</th>
-            <th width="20%">รายละเอียด</th>
-        </tr>
-        <tr>
-            <td>มีนาคม 2562</td>
-            <td>6105 บาท</td>
-            <td>11123-11145</td>
-            <td>100 หน่วย</td>
-            <td><a href="../" class="btn btn-warning">รายละเอียด</a></td>
-        </tr>
-        <tr>
-            <td>กุมภาพันธ์ 2562</td>
-            <td>5950 บาท</td>
-            <td>11123-11145</td>
-            <td>100 หน่วย</td>
-            <td><a href="../" class="btn btn-warning">รายละเอียด</a></td>
-        </tr>
-        <tr>
-            <td>มกราคม 2562</td>
-            <td>5143 บาท</td>
-            <td>11123-11145</td>
-            <td>100 หน่วย</td>
-            <td><a href="../" class="btn btn-warning">รายละเอียด</a></td>
-        </tr>
-        <tr>
-            <td>ธันวาคม 2561</td>
-            <td>5542 บาท</td>
-            <td>11123-11145</td>
-            <td>100 หน่วย</td>
-            <td><a href="../" class="btn btn-warning">รายละเอียด</a></td>
-        </tr>
-    </table>
-    -->
+    </div> -->
+
 </div>
 
 

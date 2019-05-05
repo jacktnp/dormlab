@@ -67,7 +67,7 @@ def user_home(request):
     print('this room = '+room.room_number)
     context['room'] = room
     #getGuest's Invoice 
-    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id)
+    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id).order_by('invoice_date').reverse()
     if len(invoice) > 0: #there is invoice in this user
         context['invoice'] = invoice[0]
         if invoice[0].status == '01':
@@ -123,8 +123,12 @@ def user_bill(request):
     #getGuest's Dorm
     dorm = Dorm.objects.get(id=room.dorm_dorm_id_id)
 
-    invoice = Invoice.objects.filter(
-        contracting_contract_id_id=contract[0].id)
+    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id).order_by('invoice_date').reverse()
+    if len(invoice) > 0:  # there is invoice in this user
+        context['invoicehis'] = 'there is invoice'
+        if invoice[0].status == '02':
+            # if there's a unpaid invoice invoice'll display
+            context['paid'] = 'paid'
     context['invoices'] = invoice
     print(len(invoice))
 
@@ -182,7 +186,7 @@ def user_payment(request): #got a problem
     print('this room = '+ room.room_number)
     context['room'] = room
     #getGuest's Invoice
-    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id)
+    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id).order_by('invoice_date').reverse()
 
     if len(invoice) > 0:  # there is invoice in this user
         context['invoice'] = invoice[0]
@@ -265,4 +269,17 @@ def user_detail(request):
 
 @login_required
 def contract(request):
-    return render(request, template_name='member/contract.html')
+    context = {}
+    #invoice, expense, invoice_detail, room
+    user = Guest.objects.get(id=request.user.id)
+    context['user'] = user
+    contract = Contracting.objects.filter(guest_guest_id_id=user.id)
+    context['contract'] = contract[0]
+    #getGuest's Room
+    room = Room.objects.get(id=contract[len(contract)-1].room_room_id_id)
+    context['room'] = room
+    #getGuest's Dorm
+    dorm = Dorm.objects.get(id=room.dorm_dorm_id_id)
+    context['dorm'] = dorm
+
+    return render(request, template_name='member/contract.html', context=context)
