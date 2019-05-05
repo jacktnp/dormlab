@@ -186,7 +186,6 @@ def user_payment(request): #got a problem
 
     if len(invoice) > 0:  # there is invoice in this user
         context['invoice'] = invoice[0]
-    #print('this invoice = '+str(invoice[0].total))
 
 #===========================form=====================================
     if request.method == 'POST':
