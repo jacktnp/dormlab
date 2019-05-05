@@ -120,7 +120,7 @@ class Invoice(models.Model):
     invoice_date = models.DateField()
     #dorm_name = models.CharField(max_length=255)
     # room_number = models.CharField(max_length=10)
-    month_no = models.IntegerField(default=1)
+    month_no = models.CharField(max_length=7)
     total = models.DecimalField(max_digits=10, decimal_places=3, default=0.0)
     
     STATUS = (
