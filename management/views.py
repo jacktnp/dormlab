@@ -135,8 +135,11 @@ def user_bill(request):
         expense_exp_id__in=[i.id for i in expense],
         invoice_invoice_id_id__in = [i.id for i in invoice]
     ).select_related("invoice_invoice_id").order_by('invoice_invoice_id__invoice_date').reverse()
-    context['indetails'] = invoice_detail
+    
 
+    print()
+    [print(i) for i in invoice_detail]
+    print(invoice_detail)
     #arrange invoice
     amount = []
     ide = {}
@@ -151,8 +154,16 @@ def user_bill(request):
         for j in invoice_detail:
             if j.__dict__['invoice_invoice_id_id'] == i:
                 ide[i].append(j)
-
     print(ide)
+    #order
+    o_invoice = []
+    ide[0] = amount
+    for i in ide[0]:
+        for j in ide:
+            if j == i :
+                o_invoice.append(ide[j])
+    print(o_invoice)
+    context['indetails'] = o_invoice
 
     return render(request, template_name='member/bill.html', context=context)
 

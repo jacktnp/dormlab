@@ -4,7 +4,7 @@
     <h4 class="text-center mb-3">บิลล่าสุด</h4>
     <div class="row">
         <div class="col-sm-9">
-            <h5>บิลประจำเดือน <span class="text-primary">{{invoices.0.month_now}}</span> ยอดชำระ <span class="text-danger">{{invoices.0.total|stringformat:".2f"}}</span> บาท
+            <h5>บิลประจำเดือน <span class="text-primary">{{indetails.0.0.invoice_invoice_id.month_now}}</span> ยอดชำระ <span class="text-danger">{{indetails.0.0.invoice_invoice_id.total|stringformat:".2f"}}</span> บาท
             </h5>
         </div>
         <div class="col-sm-3">
@@ -21,29 +21,25 @@
                     <th width="15%">จำนวนเงิน</th>
                 </tr>
                 <tr>
-                    <td>ค่าเช่าห้องเดือน{{indetails.0.invoice_invoice_id.month_now}} {{indetails.0.invoice_invoice_id.year_now}}</td>
+                    <td>ค่าเช่าห้องเดือน{{indetails.0.0.invoice_invoice_id.month_now}} {{indetails.0.0.invoice_invoice_id.year_now}}</td>
                     <td>1</td>
                     <td>{{room.room_rate|stringformat:".2f"}}</td>
                     <td>{{room.room_rate|stringformat:".2f"}}</td>
                 </tr>
                 <tr>
-                    <td>{{indetails.0.expense_exp_id.exp_desc}}</td>
-                    <td>{{indetails.0.unit|stringformat:"d"}}</td>
-                    <td>{{indetails.0.expense_exp_id.price_per_unit}}</td>
+                    <td>{{indetails.0.0.expense_exp_id.exp_desc}}</td>
+                    <td>{{indetails.0.0.unit|stringformat:"d"}}</td>
+                    <td>{{indetails.0.0.expense_exp_id.price_per_unit|stringformat:".2f"}}</td>
                     <td>2104.00</td>
                 </tr>
+                {% for i in indetails%}
                 <tr>
-                    <td>ค่าน้ำประปา+น้ำส่วนกลาง</td>
-                    <td>7</td>
-                    <td>18.00</td>
-                    <td>126.00</td>
+                    <td>{{i.0.expense_exp_id.exp_desc}}</td>
+                    <td>{{i.0.unit|stringformat:"d"}}</td>
+                    <td>{{i.0.expense_exp_id.price_per_unit|stringformat:".2f"}}</td>
+                    <td>{{i.0.total|stringformat:".2f"}}</td>
                 </tr>
-                <tr>
-                    <td>ค่าบริการอินเตอร์เน็ต</td>
-                    <td>1</td>
-                    <td>150.00</td>
-                    <td>150.00</td>
-                </tr>
+                {% endfor %}
                 <tr>
                     <td colspan="3">จำเงินรวมทั้งสิ้น</td>
                     <td>7380.00</td>
