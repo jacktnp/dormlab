@@ -5,6 +5,10 @@ from django.contrib.auth.models import Permission
 from  .models import Room, Reporting, Dorm,Contracting, Employee, Report_type,User
 from  .models import Guest, Parcel, Invoice, Invoice_detail, Expense, New, Payment
 
+from django.contrib.auth.admin import UserAdmin
+
+from .forms import GuestCreateForm
+
 
 # class Dormx(admin.StackedInline):
 #     model = UserProfile
@@ -49,42 +53,66 @@ class ReportingAdmin(admin.ModelAdmin):
     search_fields = ['room_number']
     ordering = ['-report_date']
 
-class EmployeeAdmin(admin.ModelAdmin):
+class EmployeeAdmin(UserAdmin):
     list_display=['dorm_dorm_id',"username","emp_phone"]
     list_filter = ['dorm_dorm_id']
   #  search_fields = ["emp_phone"]
 
-    fieldsets = [
-            (None,{'fields':[ 'username', 'password',"emp_phone","dorm_dorm_id", "is_superuser","is_staff"]}),
-            ("Information",{"fields":['first_name', 'last_name', 'email']})
-    ]
+    add_fieldsets = (
+        (
+            None, {
+                'fields': [
+                    'username', 'password1', 'password2',
+                ]
+            }
+        ),
+        (
+            "Information", {
+                "fields": [
+                    'first_name', 'last_name', 'email', "emp_phone", "dorm_dorm_id", "is_staff"
+                ]
+            }
+        )
+    )
 
 class ExpenseAdmin(admin.ModelAdmin):
     list_display=['exp_desc','price_per_unit']
   #  list_filter = ['dorm_dorm_id', 'owner']
     search_fields = ['exp_desc']
 
-class GuestAdmin(admin.ModelAdmin):
+class GuestAdmin(UserAdmin):
     list_display=['username','phone','address']
    # list_filter = ['dorm_dorm_id', 'owner']
     search_fields = ['username', 'phone']
-    fieldsets = [
-            (None,{'fields':[ 'username', 'password',"address","line",'phone']}),
-            ("Information",{"fields":['first_name', 'last_name', 'email',]})
-    ]
 
+    add_fieldsets = (
+        (
+            None, {
+                'fields': [
+                    'username', 'password1', 'password2',
+                    ]
+                }
+        ),
+        (
+            "Information", {
+                "fields": [
+                    'first_name', 'last_name', 'email', "address", "line", 'phone'
+                    ]
+                }
+            )
+    )
 
 class InvoiceAdmin(admin.ModelAdmin):
     list_display=['contracting_contract_id','invoice_date','total','status']
     list_filter = ['invoice_date', 'status']
   # search_fields = ['contracting_contract_id', 'status']
-    # change_list_template = 'admin/sale_summary_change_list.html'
+    # change_list_template = 'admin/chart.html'
     # date_hierarchy = 'created'
 
 
 
 class Invoice_detailAdmin(admin.ModelAdmin):
-    list_display=['invoice_invoice_id','expense_exp_id','price','unit','__str__']
+    list_display=['invoice_invoice_id','expense_exp_id','unit','__str__']
 
 class ParcelAdmin(admin.ModelAdmin):
     list_display=['__str__','arrive_date','post_type',"track_number"]
