@@ -7,20 +7,23 @@ from django.contrib.auth.forms import UserCreationForm
 
 class GuestPaymentForm(forms.ModelForm):
     bill_attr = {'type' :"file", 'class': "custom-file-input"}
-    date_attr = {'type': "datetime-local", 'class': "form-control"}
+    date_attr = {'type': "datetime", 'class': "form-control"}
     desc_attr = {'class': "form-control" ,'rows': "3"}
 
 
-    bill_picture = forms.ImageField(
-        widget=forms.TextInput(attrs=bill_attr))
+    # bill_picture = forms.ImageField(label='อัพโหลดสลิป',
+    #     widget=forms.TextInput(attrs=bill_attr))
     payment_datetime = forms.DateTimeField(
-        widget=forms.TextInput(attrs=date_attr))
+        widget=forms.DateInput(attrs=date_attr))
     payment_desc = forms.CharField(widget=forms.Textarea(attrs=desc_attr))
-
+    bill_picture = forms.ImageField(label="อัพโหลดสลิป")
+    # payment_datetime = forms.DateTimeField(
+    #     label="วันเวลาโอนชำระเงิน", widget=forms.TextInput(attrs={'type': 'datetime'}))
+    # payment_desc = forms.CharField(label="หมายเหตุ", required=False)
 
     class Meta:
         model = Payment
-        exclude = ['payment_confirm', 'payment_guest_id']
+        exclude = ['payment_confirm', 'payment_guest_id', 'bill_picture']
 
 
 class GuestReportForm(forms.ModelForm):
@@ -62,15 +65,16 @@ class GuestCreateForm(UserCreationForm):
         if commit:
             user.save()
         return user
-    # class Meta:
-    #     model = User
-    #     fields = ('email',)
 
-    # def save(self, commit=True):
-    #     # Save the provided password in hashed format
-    #     user = super(UserCreationForm, self).save(commit=False)
-    #     user.set_password(self.cleaned_data["password"])
-    #     if commit:
-    #         user.save()
-    #     return user
 
+class PaymentForm(forms.Form):
+    bill_attr = {'type': "file", 'class': "custom-file-input"}
+    date_attr = {'type': "datetime", 'class': "form-control"}
+    desc_attr = {'class': "form-control" ,'rows': "3"}
+
+    # bill_picture = forms.ImageField(label="อัพโหลดสลิป", widget=forms.TextInput(attrs=bill_attr))
+    # payment_datetime = forms.DateTimeField(label="วันเวลาโอนชำระเงิน", widget=forms.TextInput(attrs=date_attr))
+    # payment_desc = forms.CharField(label="หมายเหตุ", widget=forms.Textarea(attrs=desc_attr), required=False)
+    bill_picture = forms.ImageField(label="อัพโหลดสลิป")
+    payment_datetime = forms.DateTimeField(label="วันเวลาโอนชำระเงิน", widget=forms.TextInput(attrs={'type': 'datetime'}))
+    payment_desc = forms.CharField(label="หมายเหตุ", required=False)

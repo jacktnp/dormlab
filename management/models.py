@@ -87,6 +87,33 @@ class Contracting(models.Model):
     def __str__(self):
         return "Guest :%s | %s"%(self.guest_guest_id, self.room_room_id)
 
+    def day_now_str(self):
+        return int(str(self.start_date)[8:10])
+    def day_now_end(self):
+        return int(str(self.expire_date)[8:10])
+
+    def month_now_str(self):
+        month = {
+            '01': 'มกราคม', '02': 'กุมภาพันธ์', '03': 'มีนาคม', '04': 'เมษายน',
+            '05': 'พฤษภาคม', '06': 'มิถุนายน', '07': 'กรกฎาคม', '08': 'สิงหาคม',
+            '09': 'กันยายน', '10': 'ตุลาคม', '11': 'พฤศจิกายน', '12': 'ธันวาคม'
+        }
+        return month[str(self.start_date)[5:7]]
+
+    def month_now_end(self):
+        month = {
+            '01': 'มกราคม', '02': 'กุมภาพันธ์', '03': 'มีนาคม', '04': 'เมษายน',
+            '05': 'พฤษภาคม', '06': 'มิถุนายน', '07': 'กรกฎาคม', '08': 'สิงหาคม',
+            '09': 'กันยายน', '10': 'ตุลาคม', '11': 'พฤศจิกายน', '12': 'ธันวาคม'
+        }
+        return month[str(self.expire_date)[5:7]]
+
+    def year_now_str(self):
+        return int(str(self.start_date)[:4])+543
+
+    def year_now_end(self):
+        return int(str(self.expire_date)[:4])+543
+
 class Guest(User):
     # guest_fname = models.CharField(max_length=255)
     # guest_lname = models.CharField(max_length=255)

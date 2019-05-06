@@ -2,32 +2,29 @@
 
 <!-- code here -->
 
-    <div class="container bg-white p-5 mt-4 contain">
-        <h2 class="text-center">สัญญาหอพัก</h2>
-        <br>
-        <p>ทดสอบ ๆ</p>
-    </div>
+<div class="container bg-white p-5 mt-4 contain">
+    <h2 class="text-center">สัญญาหอพัก</h2>
+    <br>
+    <p>เริ่มสัญญาวันที่ {{contract.day_now_str}} {{contract.month_now_str}} {{contract.year_now_str}}</p>
+    <p>หมดสัญญาวันที่ {{contract.day_now_end}} {{contract.month_now_end}} {{contract.year_now_end}}</p>
+</div>
 
-    <div class="container bg-white p-5 contain mt-5">
-        <h2 class="text-center">ข้อมูลหอพัก</h2>
-        <br>
-        <p>
-            <b>ที่อยู่หอพัก: </b>
-            เลขที่ 1 ซอยฉลองกรุง 1 แขวงลาดกระบัง เขตลาดกระบัง กรุงเทพฯ 10520
-        </p>
-        <p>
-            <b>เบอร์โทรหอพัก: </b>
-            08x-xxx-xxxx
-        </p>
-        <p>
-            <b>เวลาทำการ Office: </b>
-            9.00 - 17.00 น. (ปิดทุกวันอาทิตย์)
-        </p>
-        <p>
-            <b>หมายเหตุ: </b>
-            กรุณาระบุเลขห้องพักในการจัดส่งพัสดุด้วย
-        </p>
-    </div>
+<div class="container bg-white p-5 contain mt-5">
+    <h2 class="text-center">ข้อมูลหอพัก</h2>
+    <br>
+    <p>
+        <b>ที่อยู่หอพัก: </b> {{dorm.location}}
+    </p>
+    <p>
+        <b>เบอร์โทรหอพัก: </b> {{dorm.tel}}
+    </p>
+    <!-- <p>
+        <b>เวลาทำการ Office: </b> 9.00 - 17.00 น. (ปิดทุกวันอาทิตย์)
+    </p>
+    <p>
+        <b>หมายเหตุ: </b> กรุณาระบุเลขห้องพักในการจัดส่งพัสดุด้วย
+    </p> -->
+</div>
 
 
 {% endblock content%}

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Room, Contracting, Dorm, Guest, Invoice, Payment, Report_type, New, Parcel, Expense, Invoice_detail
 
-from .forms import GuestPaymentForm, GuestReportForm
+from .forms import GuestPaymentForm, GuestReportForm, PaymentForm
 
 import datetime
 
@@ -67,7 +67,7 @@ def user_home(request):
     print('this room = '+room.room_number)
     context['room'] = room
     #getGuest's Invoice 
-    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id)
+    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id).order_by('invoice_date').reverse()
     if len(invoice) > 0: #there is invoice in this user
         context['invoice'] = invoice[0]
         if invoice[0].status == '01':
@@ -123,8 +123,12 @@ def user_bill(request):
     #getGuest's Dorm
     dorm = Dorm.objects.get(id=room.dorm_dorm_id_id)
 
-    invoice = Invoice.objects.filter(
-        contracting_contract_id_id=contract[0].id)
+    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id).order_by('invoice_date').reverse()
+    if len(invoice) > 0:  # there is invoice in this user
+        context['invoicehis'] = 'there is invoice'
+        if invoice[0].status == '02':
+            # if there's a unpaid invoice invoice'll display
+            context['paid'] = 'paid'
     context['invoices'] = invoice
     print(len(invoice))
 
@@ -135,8 +139,11 @@ def user_bill(request):
         expense_exp_id__in=[i.id for i in expense],
         invoice_invoice_id_id__in = [i.id for i in invoice]
     ).select_related("invoice_invoice_id").order_by('invoice_invoice_id__invoice_date').reverse()
-    context['indetails'] = invoice_detail
+    
 
+    print()
+    [print(i) for i in invoice_detail]
+    print(invoice_detail)
     #arrange invoice
     amount = []
     ide = {}
@@ -151,8 +158,16 @@ def user_bill(request):
         for j in invoice_detail:
             if j.__dict__['invoice_invoice_id_id'] == i:
                 ide[i].append(j)
-
     print(ide)
+    #order
+    o_invoice = []
+    ide[0] = amount
+    for i in ide[0]:
+        for j in ide:
+            if j == i :
+                o_invoice.append(ide[j])
+    print(o_invoice)
+    context['indetails'] = o_invoice
 
     return render(request, template_name='member/bill.html', context=context)
 
@@ -171,7 +186,7 @@ def user_payment(request): #got a problem
     print('this room = '+ room.room_number)
     context['room'] = room
     #getGuest's Invoice
-    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id)
+    invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id).order_by('invoice_date').reverse()
 
     if len(invoice) > 0:  # there is invoice in this user
         context['invoice'] = invoice[0]
@@ -181,10 +196,14 @@ def user_payment(request): #got a problem
         form = GuestPaymentForm(request.POST, request.FILES)
         print('aaaaaaaaaa')
         print(request.user.id)
+        image = request.FILES.get('bill_picture')
+        if image: print('there is an img/')
+        else: print('non')
         if form.is_valid():
-            print('asdada')
+            print('form_validated')
             payment = form.save(commit=False)
-            payment.payment_guest_id = request.user.id
+            payment.payment_guest_id = user
+            payment.bill_picture = image
             form.save()
     else:
         form = GuestPaymentForm()
@@ -254,4 +273,17 @@ def user_detail(request):
 
 @login_required
 def contract(request):
-    return render(request, template_name='member/contract.html')
+    context = {}
+    #invoice, expense, invoice_detail, room
+    user = Guest.objects.get(id=request.user.id)
+    context['user'] = user
+    contract = Contracting.objects.filter(guest_guest_id_id=user.id)
+    context['contract'] = contract[0]
+    #getGuest's Room
+    room = Room.objects.get(id=contract[len(contract)-1].room_room_id_id)
+    context['room'] = room
+    #getGuest's Dorm
+    dorm = Dorm.objects.get(id=room.dorm_dorm_id_id)
+    context['dorm'] = dorm
+
+    return render(request, template_name='member/contract.html', context=context)
