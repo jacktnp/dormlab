@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Room, Contracting, Dorm, Guest, Invoice, Payment, Report_type, New, Parcel, Expense, Invoice_detail
 
-from .forms import GuestPaymentForm, GuestReportForm
+from .forms import GuestPaymentForm, GuestReportForm, PaymentForm
 
 import datetime
 
@@ -196,10 +196,14 @@ def user_payment(request): #got a problem
         form = GuestPaymentForm(request.POST, request.FILES)
         print('aaaaaaaaaa')
         print(request.user.id)
+        image = request.FILES.get('bill_picture')
+        if image: print('there is an img/')
+        else: print('non')
         if form.is_valid():
-            print('asdada')
+            print('form_validated')
             payment = form.save(commit=False)
-            payment.payment_guest_id = request.user.id
+            payment.payment_guest_id = user
+            payment.bill_picture = image
             form.save()
     else:
         form = GuestPaymentForm()
