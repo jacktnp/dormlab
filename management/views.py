@@ -78,7 +78,10 @@ def user_home(request):
     print(dorm.dorm_name)
     context['dorm'] = dorm
 
-    return render(request, template_name='member/index.html', context=context)
+    if request.user.is_staff:
+        return redirect ('/admin')
+    else:
+        return render(request, template_name='member/index.html', context=context)
 
 
 @login_required
