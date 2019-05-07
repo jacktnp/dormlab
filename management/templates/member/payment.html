@@ -8,6 +8,18 @@
 
     <form method='POST' enctype="multipart/form-data" action="{% url 'user_payment' %}">
         {%csrf_token%}
+        
+        <!-- Notification -->
+        <div class="noti">
+            <div class="alert alert-success z-index-100" role="alert">
+                <i class="far fa-check-circle"></i> ส่งรายงานสำเร็จ
+            </div>
+            <div class="alert alert-danger z-index-100" role="alert">
+                <i class="far fa-times-circle"></i> ผิดพลาด ลองใหม่อีกครั้งหรือติดต่อเจ้าของหอพักเพื่อแจ้งปัญหา
+            </div>
+        </div>
+        <!-- / Notification -->
+
         <div class="form-group">
             <label for="name"><i class="fas fa-user"></i> ชื่อ-สกุล</label>
             <input type="text" class="form-control" value="{{user.first_name}} {{user.last_name}}" id="name" disabled>

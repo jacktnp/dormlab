@@ -1,19 +1,35 @@
 {% extends "base.html" %} {% block content%}
-
+<style>
+    footer {
+        position: absolute !important;
+    }
+</style>
 <!-- Report the problem -->
 <div class="container bg-white p-5 contain">
     <div class="d-flex justify-content-center">
         <h1 class="mx-auto mb-4">แจ้งปัญหา</h1>
     </div>
-
+    
     <form method="POST" action="{%url 'user_report'%}">
         {%csrf_token%}
+
+        <!-- Notification -->
+        <div class="noti">
+            <div class="alert alert-success z-index-100" role="alert">
+                <i class="far fa-check-circle"></i> ส่งรายงานสำเร็จ
+            </div>
+            <div class="alert alert-danger z-index-100" role="alert">
+                <i class="far fa-times-circle"></i> ผิดพลาด ลองใหม่อีกครั้งหรือติดต่อเจ้าของหอพักเพื่อแจ้งปัญหา
+            </div>
+        </div>
+        <!-- / Notification -->
+
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <label class="input-group-text" for="type">ประเภท</label>
             </div>
             <select name="u_select" class="custom-select" id="type">
-                    <option selected disabled>กรุณาเลือกประเภทที่ต้องการแจ้ง</option>
+                    <option selected readonly disabled>กรุณาเลือกประเภทที่ต้องการแจ้ง</option>
                     {% for report in report_typies%}
                     <option value="{{report.type_name}}">{{report.type_name}}</option>
                     {%endfor%}

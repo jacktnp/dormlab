@@ -27,9 +27,10 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += [
-        url(r'payment/(?P<path>.*)$', serve, {
-            'document_root' : settings.PAYMENT_ROOT
-        })
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }
+        )
     ]
 
 admin.site.site_header = 'Dormlab-Admin'
