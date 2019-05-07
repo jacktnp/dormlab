@@ -34,7 +34,7 @@ class Reporting(models.Model):
 
     #foreignKey
     report_type_type_id = models.ForeignKey('Report_type', on_delete=models.PROTECT, verbose_name="REPORT TYPE")
-    room_room_id = models.ForeignKey('Room', on_delete=models.PROTECT, verbose_name="DORM NAME")
+    room_room_id = models.ForeignKey('Room', on_delete=models.PROTECT, verbose_name="DORM - ROOM NUMBER")
 
 class Report_type(models.Model):
     type_name = models.CharField(max_length=100)
@@ -85,7 +85,7 @@ class Contracting(models.Model):
     room_room_id = models.ForeignKey(Room, on_delete=models.PROTECT, verbose_name="ROOM NUMBER")
     guest_guest_id = models.ForeignKey('Guest', on_delete=models.PROTECT, verbose_name="GUEST NAME")
     def __str__(self):
-        return "Guest :%s | %s"%(self.guest_guest_id, self.room_room_id)
+        return "%s | GUEST : %s"%( self.room_room_id, self.guest_guest_id)
 
     def day_now_str(self):
         return int(str(self.start_date)[8:10])
