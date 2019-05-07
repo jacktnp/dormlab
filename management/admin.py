@@ -125,7 +125,7 @@ class NewAdmin(admin.ModelAdmin):
     list_filter = ['dorm_dorm_id']
 
 class PaymentAdmin(admin.ModelAdmin):
-    list_display=["payment_guest_id",'payment_desc','payment_datetime','payment_confirm']
+    list_display=["payment_guest_id",'payment_desc','payment_datetime','payment_confirm', 'bill_picture']
     search_fields = ["payment_guest_id",'payment_desc','payment_confirm']
     list_filter = ['payment_confirm', 'payment_datetime']
 
