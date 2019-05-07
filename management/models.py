@@ -161,7 +161,7 @@ class Invoice(models.Model):
     #foreignKey
     contracting_contract_id = models.ForeignKey('Contracting', on_delete=models.PROTECT, verbose_name="CONTRACT NAME")
     def __str__(self):
-        return "%s "%(self.contracting_contract_id)
+        return "%s | DATE : %s"%(self.contracting_contract_id,str(self.invoice_date)[0:7])
     #yyyy-mm-dd
     def month_now(self):
         month = {
@@ -194,7 +194,7 @@ class Expense(models.Model):
     #foreignKey
     expense_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
     def __str__(self):
-        return "%s "%(self.self.exp_desc)
+        return "%s "%(self.exp_desc)
 
 class Payment(models.Model):
     # fname = models.CharField(max_length=255)
