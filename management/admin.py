@@ -76,9 +76,9 @@ class EmployeeAdmin(UserAdmin):
     )
 
 class ExpenseAdmin(admin.ModelAdmin):
-    list_display=['exp_desc','price_per_unit']
-  #  list_filter = ['dorm_dorm_id', 'owner']
-    search_fields = ['exp_desc']
+    list_display=['expense_dorm_id', 'exp_desc','price_per_unit']
+    list_filter = ['expense_dorm_id']
+    search_fields = ['expense_dorm_id', 'exp_desc','price_per_unit']
 
 class GuestAdmin(UserAdmin):
     list_display=['username','phone','address']
