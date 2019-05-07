@@ -69,7 +69,7 @@ class EmployeeAdmin(UserAdmin):
         (
             "Information", {
                 "fields": [
-                    'first_name', 'last_name', 'email', "emp_phone", "dorm_dorm_id", "is_staff"
+                    'first_name', 'last_name', 'email', "emp_phone", "dorm_dorm_id", "is_staff", 'groups'
                 ]
             }
         )
@@ -89,14 +89,14 @@ class GuestAdmin(UserAdmin):
         (
             None, {
                 'fields': [
-                    'username', 'password1', 'password2',
+                    'username', 'password1', 'password2'
                     ]
                 }
         ),
         (
             "Information", {
                 "fields": [
-                    'first_name', 'last_name', 'email', "address", "line", 'phone'
+                    'first_name', 'last_name', 'email', "address", "line", 'phone', 'groups'
                     ]
                 }
             )

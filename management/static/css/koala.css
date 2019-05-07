@@ -85,14 +85,14 @@ footer {
     text-decoration: none;
 }
 
-.noti{
+.noti {
     position: absolute !important;
     right: .5em !important;
-    top: .5em !important;
-    display: none;
+    top: .10em !important;
+    /* display: none; */
 }
 
-.z-index-100{
+.z-index-100 {
     z-index: 100;
 }
 

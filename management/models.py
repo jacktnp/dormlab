@@ -134,8 +134,8 @@ class Parcel(models.Model):
     fname_guest = models.CharField(max_length=255)
     lname_guest = models.CharField(max_length=255)
     arrive_date = models.DateTimeField()
-    post_type = models.CharField(max_length=255)
-    packaging = models.CharField(max_length=255)
+    post_type = models.CharField(max_length=255, null=True)
+    packaging = models.CharField(max_length=255, null=True)
     track_number = models.CharField(max_length=13, unique=True)
 
     #foreignKey

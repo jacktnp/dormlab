@@ -9,10 +9,11 @@
         </div>
         {%if invoicehis %}
         <div class="col-sm-3">
-            <a href="{% url 'user_payment' %}" class="btn btn-danger">ยังไม่ชำระ</a>
-            <!--  -->
             {%if paid %}
             <a @click.prevent='' href="{% url 'user_bill' %}" class="btn btn-success">ชำระแล้ว</a>
+            <!--  -->
+            {%else%}
+            <a href="{% url 'user_payment' %}" class="btn btn-danger">ยังไม่ชำระ</a>
             <!--  -->
             {%endif%}
             <a href="{% url 'user_detail' %}" class="btn btn-info" data-toggle="collapse" data-target="#detail_id" aria-expanded="false" aria-controls="collapseExample">รายละเอียด</a>

@@ -8,16 +8,23 @@
 
     <form method='POST' enctype="multipart/form-data" action="{% url 'user_payment' %}">
         {%csrf_token%}
-        
+
         <!-- Notification -->
+        {% if messages %}
+        <!--  -->
+        {%for message in messages%}
         <div class="noti">
             <div class="alert alert-success z-index-100" role="alert">
-                <i class="far fa-check-circle"></i> ส่งรายงานสำเร็จ
+                <i class="far fa-check-circle"></i> ส่งสำเร็จเรียบร้อย
             </div>
-            <div class="alert alert-danger z-index-100" role="alert">
+            <!-- <div class="alert alert-danger z-index-100" role="alert">
                 <i class="far fa-times-circle"></i> ผิดพลาด ลองใหม่อีกครั้งหรือติดต่อเจ้าของหอพักเพื่อแจ้งปัญหา
-            </div>
+            </div> -->
         </div>
+        <!--  -->
+        {%endfor%}
+        <!--  -->
+        {%endif%}
         <!-- / Notification -->
 
         <div class="form-group">
@@ -32,7 +39,14 @@
 
         <div class="form-group">
             <label for="price"><i class="fas fa-money-bill-alt"></i> จำนวนเงิน</label>
-            <input type="number" class="form-control text-danger" value='{{invoice.total|stringformat:".2f"}}' id="price" disabled>
+            <!--  -->
+            {%if paid%}
+            <input type="number" class="form-control text-danger" value='0.00' id="price" disabled>
+            <!--  -->
+            {%else%}
+            <input type="number" class="form-control text-danger" value='{{invoice.total|stringformat:".2f"}}' id="price" disabled> '
+            <!--  -->
+            {%endif%}
         </div>
         <div class="form-group">
             <label id="{{ form.bill_picture.id_for_label }}" for="phonefordorm"><i class="fas fa-cloud-upload-alt"></i> {{form.bill_picture.label}}</label>
@@ -57,7 +71,13 @@
         </div>
 
         <div class="d-flex justify-content-center">
+            {%if paid %}
+            <button type="submit" class="btn btn-primary w-100 mt-3" disabled>ยันยัน</button>
+            <!--  -->
+            {%else%}
             <button type="submit" class="btn btn-primary w-100 mt-3">ยันยัน</button>
+            <!--  -->
+            {%endif%}
         </div>
     </form>
 </div>
