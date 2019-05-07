@@ -194,7 +194,7 @@ class Expense(models.Model):
     #foreignKey
     expense_dorm_id = models.ForeignKey('Dorm', on_delete=models.PROTECT)
     def __str__(self):
-        return "%s "%(self.exp_desc)
+        return "%s : %s"%(self.expense_dorm_id, self.exp_desc)
 
 class Payment(models.Model):
     # fname = models.CharField(max_length=255)
