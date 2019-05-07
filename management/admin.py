@@ -82,7 +82,7 @@ class ExpenseAdmin(admin.ModelAdmin):
 
 class GuestAdmin(UserAdmin):
     list_display=['username','phone','address']
-   # list_filter = ['dorm_dorm_id', 'owner']
+    #list_filter = ['dorm_dorm_id', 'owner']
     search_fields = ['username', 'phone']
 
     add_fieldsets = (
