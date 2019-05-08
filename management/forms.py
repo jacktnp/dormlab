@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 class GuestPaymentForm(forms.ModelForm):
     bill_attr = {'type' :"file", 'class': "custom-file-input"}
-    date_attr = {'type': "datetime", 'class': "form-control"}
+    date_attr = {'type': "datetime", 'class': "form-control", "placeholder": 'YYYY-MM-DD ชั่วโมง:นาที'}
     desc_attr = {'class': "form-control" ,'rows': "3"}
 
 
