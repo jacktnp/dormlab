@@ -86,10 +86,7 @@ footer {
 }
 
 .noti {
-    position: absolute !important;
-    right: .5em !important;
-    top: .10em !important;
-    /* display: none; */
+    
 }
 
 .z-index-100 {
