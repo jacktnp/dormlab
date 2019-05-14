@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'dormlab.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dormlab_db',
-        'USER': 'dormlab_acc',
-        'PASSWORD': '1234',
-        'HOST': '127.0.0.1',
+        'NAME': 'pyxistea_dormlab',
+        'USER': 'pyxistea_dormlab',
+        'PASSWORD': 'Zsbwtv5W',
+        'HOST': '103.27.201.8',
         'PORT': '3306',
     }
 }
