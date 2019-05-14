@@ -44,7 +44,7 @@
             <input type="number" class="form-control text-danger" value='0.00' id="price" disabled>
             <!--  -->
             {%else%}
-            <input type="number" class="form-control text-danger" value='{{invoice.total|stringformat:".2f"}}' id="price" disabled> '
+            <input type="number" class="form-control text-danger" value='{{invoice.total|stringformat:".2f"}}' id="price" disabled>
             <!--  -->
             {%endif%}
         </div>
@@ -53,7 +53,7 @@
             <div class="custom-file">
                 <input name='bill_picture' type="file" class="custom-file-input" id="customFile">
                 <!-- {{form.bill_picture}} -->
-                <label class="custom-file-label" for="{{ form.bill_picture.id_for_label }}">Choose file</label>
+                <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
         </div>
 
@@ -83,4 +83,10 @@
 </div>
 <!-- / new Dorm -->
 
+<script>
+    $('#customField').on('change', function() {
+        var fileName = $(this).val();
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>
 {% endblock content%}
