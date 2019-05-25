@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content%}
 <style>
     footer {
-        position: absolute !important;
+        
     }
 </style>
 <!-- Report the problem -->
@@ -9,19 +9,24 @@
     <div class="d-flex justify-content-center">
         <h1 class="mx-auto mb-4">แจ้งปัญหา</h1>
     </div>
-    
+
     <form method="POST" action="{%url 'user_report'%}">
         {%csrf_token%}
 
         <!-- Notification -->
+        <!-- Notification -->
+        {% if messages %}
+        <!--  -->
+        {%for message in messages%}
         <div class="noti">
-            <div class="alert alert-success z-index-100" role="alert">
-                <i class="far fa-check-circle"></i> ส่งรายงานสำเร็จ
-            </div>
-            <div class="alert alert-danger z-index-100" role="alert">
-                <i class="far fa-times-circle"></i> ผิดพลาด ลองใหม่อีกครั้งหรือติดต่อเจ้าของหอพักเพื่อแจ้งปัญหา
+            <div class="alert alert-success text-center" role="alert">
+                <i class="far fa-check-circle"></i> ส่งสำเร็จเรียบร้อย
             </div>
         </div>
+        <!--  -->
+        {%endfor%}
+        <!--  -->
+        {%endif%}
         <!-- / Notification -->
 
         <div class="input-group mb-3">

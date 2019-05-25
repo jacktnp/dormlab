@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 from .models import Room, Contracting, Dorm, Guest, Invoice, Payment, Report_type, New, Parcel, Expense, Invoice_detail
 
 from .forms import GuestPaymentForm, GuestReportForm, PaymentForm
@@ -129,7 +131,7 @@ def user_bill(request):
     invoice = Invoice.objects.filter(contracting_contract_id_id=contract[0].id).order_by('invoice_date').reverse()
     if len(invoice) > 0:  # there is invoice in this user
         context['invoicehis'] = 'there is invoice'
-        if invoice[0].status == '02':
+        if invoice[0].status == '03':
             # if there's a unpaid invoice invoice'll display
             context['paid'] = 'paid'
     context['invoices'] = invoice
@@ -193,6 +195,8 @@ def user_payment(request): #got a problem
 
     if len(invoice) > 0:  # there is invoice in this user
         context['invoice'] = invoice[0]
+        if invoice[0].status == "03":
+            context['paid'] = 'paid'
 
 #===========================form=====================================
     if request.method == 'POST':
@@ -208,6 +212,8 @@ def user_payment(request): #got a problem
             payment.payment_guest_id = user
             payment.bill_picture = image
             form.save()
+            messages.success(request, 'Form submission successful')
+            return redirect('user_payment')
     else:
         form = GuestPaymentForm()
 
@@ -259,6 +265,8 @@ def user_report(request): #doing
                 report.report_type_type_id = Report_type.objects.get(id=rep_id)
                 print('reporttype_id = '+str(report.report_type_type_id.id))
                 form.save()
+                messages.success(request, 'Form submission successful')
+                return redirect('user_report')
             except Exception as e:
                 print(str(e)+ " errrrrrrrrr")
 
