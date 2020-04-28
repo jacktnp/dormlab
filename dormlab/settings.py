@@ -78,15 +78,10 @@ WSGI_APPLICATION = 'dormlab.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pyxistea_dormlab',
-        'USER': 'pyxistea_dormlab',
-        'PASSWORD': 'Zsbwtv5W',
-        'HOST': '103.27.201.8',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'dormlab_db',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
